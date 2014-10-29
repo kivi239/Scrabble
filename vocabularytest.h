@@ -17,14 +17,24 @@ private slots:
         testObject = new Vocabulary;
     }
 
-    void cleanup()
-    {
-        delete testObject;
-    }
-
     void buildTest()
     {
         testObject->build();
+    }
+
+    void addTest()
+    {
+        testObject->build();
+        string tmp = "accepted";
+        bool fl1 = testObject->add(tmp);
+        bool fl2 = testObject->add(tmp);
+        fl2 = !fl2;
+        QVERIFY(fl1 && fl2);
+    }
+
+    void cleanup()
+    {
+        delete testObject;
     }
 
 

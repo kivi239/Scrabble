@@ -13,17 +13,14 @@ Vocabulary::~Vocabulary()
 }
 
 void Vocabulary::build()
-{
-    q
-    ifstream reader("vocabulary.txt");
+{    
+    ifstream reader;
+    reader.open("vocabulary.txt");
     string wordFromDictionary;
-    int x = 0;
-    reader >> wordFromDictionary;
+    while(reader >> wordFromDictionary)
     {
-        x++;
         myTrie->add(wordFromDictionary);
-    }
-    qDebug() << x;
+    }    
 }
 
 bool Vocabulary::add(string &word)

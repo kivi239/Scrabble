@@ -2,6 +2,8 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -16,6 +18,7 @@ public:
 
 private:
     int sizeOfTrie;
+    bool isGood(string &word);
     map <char, int> emptyMap;
     vector < pair <int, map <char, int> > > trie;
 };
