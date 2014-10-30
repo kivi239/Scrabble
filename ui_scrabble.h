@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QWidget>
 
@@ -21,12 +22,22 @@ QT_BEGIN_NAMESPACE
 class Ui_Scrabble
 {
 public:
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout;
 
     void setupUi(QWidget *Scrabble)
     {
         if (Scrabble->objectName().isEmpty())
             Scrabble->setObjectName(QStringLiteral("Scrabble"));
-        Scrabble->resize(800, 480);
+        Scrabble->resize(641, 696);
+        gridLayoutWidget = new QWidget(Scrabble);
+        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
+        gridLayoutWidget->setGeometry(QRect(60, 70, 511, 521));
+        gridLayout = new QGridLayout(gridLayoutWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
 
         retranslateUi(Scrabble);
 

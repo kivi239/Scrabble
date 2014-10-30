@@ -15,8 +15,7 @@ TEMPLATE = app
 SOURCES += main.cpp\
         scrabble.cpp \
     scrabblefunc.cpp \
-    field.cpp \
-    const.cpp
+    field.cpp
 
 HEADERS  += scrabble.h \
     scrabblefunc.h \

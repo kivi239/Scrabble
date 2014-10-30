@@ -1,20 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Scrabble</class>
- <widget class="QWidget" name="Scrabble" >
-  <property name="geometry" >
+ <widget class="QWidget" name="Scrabble">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>480</height>
+    <width>641</width>
+    <height>696</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Scrabble</string>
   </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>70</y>
+     <width>511</width>
+     <height>521</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout"/>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
