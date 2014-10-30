@@ -20,16 +20,12 @@ RESOURCES += \
 SOURCES += main.cpp\
         scrabble.cpp \
     scrabblefunc.cpp \
-<<<<<<< HEAD
-    field.cpp
-=======
     field.cpp \
     const.cpp \
     vocabulary.cpp \
     trie.cpp \
     vocabularytest.cpp
 
->>>>>>> b280107635e0309b983e3098fb995ea505b9c3d5
 
 HEADERS  += scrabble.h \
     scrabblefunc.h \
