@@ -15,7 +15,7 @@ TARGET = scrabble
 TEMPLATE = app
 
 RESOURCES += \
-    files.qrc \
+    files.qrc 
 
 SOURCES += main.cpp\
         scrabble.cpp \
@@ -33,7 +33,7 @@ HEADERS  += scrabble.h \
     const.h \
     vocabulary.h \
     trie.h \
-    vocabularytest.h \
+    vocabularytest.h 
 
 FORMS    += scrabble.ui
 
