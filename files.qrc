@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/balda">
+    <qresource prefix="/scrabble">
         <file>vocabulary.txt</file>
     </qresource>
 </RCC>
