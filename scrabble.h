@@ -15,7 +15,7 @@ class Scrabble : public QWidget
   Q_OBJECT
 
 public:
-  explicit Scrabble(QWidget *parent = 0);
+  explicit Scrabble(int _countOfGamers, QWidget *parent = 0);
   ~Scrabble();
   void generate();
 

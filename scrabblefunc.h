@@ -9,6 +9,8 @@ class ScrabbleFunc
 public:
   ScrabbleFunc(int count);
   ~ScrabbleFunc();
+  void setCell(int x, int y, char c);
+  char getCell(int x, int y);
 
 private:
   int countOfGamers;

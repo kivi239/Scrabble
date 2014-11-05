@@ -1,10 +1,10 @@
 #include "scrabble.h"
 #include "ui_scrabble.h"
 
-Scrabble::Scrabble(QWidget *parent) :
+Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   QWidget(parent),
   ui(new Ui::Scrabble),
-  scrabble(new ScrabbleFunc(2))
+  scrabble(new ScrabbleFunc(_countOfGamers))
 {
   ui->setupUi(this);
   generate();
@@ -12,7 +12,6 @@ Scrabble::Scrabble(QWidget *parent) :
 
 Scrabble::~Scrabble()
 {
-  //delete scrabble;
   delete ui;
 }
 

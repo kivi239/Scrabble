@@ -34,7 +34,7 @@ public:
         Scrabble->setMaximumSize(QSize(1080, 1920));
         gridLayoutWidget = new QWidget(Scrabble);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(10, 440, 1051, 1001));
+        gridLayoutWidget->setGeometry(QRect(20, 390, 1041, 1001));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
