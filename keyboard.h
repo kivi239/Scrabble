@@ -3,6 +3,7 @@
 #include <map>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 class Keyboard : public QWidget
 {
@@ -18,5 +19,5 @@ public slots:
 private:
   void generate();
   QHBoxLayout **layouts;
-  QHBoxLayout *layout;
+  QVBoxLayout *layout;
 };

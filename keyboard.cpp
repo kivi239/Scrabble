@@ -1,9 +1,10 @@
 #include "keyboard.h"
+#include <QString>
 
 Keyboard::Keyboard(QWidget *parent) :
   QWidget(parent),
   layouts(nullptr),
-  layout(nullptr)
+  layout(new QVBoxLayout)
 {
   generate();
 }
@@ -19,7 +20,9 @@ void Keyboard::generate()
     {
       if (i == 2 && j == 8)
         break;
-      QPushButton *newButton = new QPushButton("" + (char)(i * 9 + j));
+      QString letter= "";
+      letter += (char)('a' + i * 9 + j);
+      QPushButton *newButton = new QPushButton(letter);
       newButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
       layouts[i]->addWidget(newButton);
     }
@@ -27,6 +30,6 @@ void Keyboard::generate()
 
   for (int i = 0; i < 3; i++)
     layout->addLayout(layouts[i]);
-  //setLayout(layout);
+  setLayout(layout);
 }
 
