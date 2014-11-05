@@ -2,8 +2,11 @@
 
 Keyboard::Keyboard(QWidget *parent) :
   QWidget(parent),
-  layouts(nullptr)
-  {}
+  layouts(nullptr),
+  layout(nullptr)
+{
+  generate();
+}
 
 void Keyboard::generate()
 {
@@ -17,8 +20,13 @@ void Keyboard::generate()
       if (i == 2 && j == 8)
         break;
       QPushButton *newButton = new QPushButton("" + (char)(i * 9 + j));
+      newButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
       layouts[i]->addWidget(newButton);
     }
   }
+
+  for (int i = 0; i < 3; i++)
+    layout->addLayout(layouts[i]);
+  //setLayout(layout);
 }
 

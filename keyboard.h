@@ -18,4 +18,5 @@ public slots:
 private:
   void generate();
   QHBoxLayout **layouts;
+  QHBoxLayout *layout;
 };

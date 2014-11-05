@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,23 +25,32 @@ class Ui_Scrabble
 public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout;
 
     void setupUi(QWidget *Scrabble)
     {
         if (Scrabble->objectName().isEmpty())
             Scrabble->setObjectName(QStringLiteral("Scrabble"));
-        Scrabble->resize(1080, 1920);
+        Scrabble->resize(324, 576);
         Scrabble->setMinimumSize(QSize(324, 576));
-        Scrabble->setMaximumSize(QSize(1080, 1920));
+        Scrabble->setMaximumSize(QSize(324, 576));
         gridLayoutWidget = new QWidget(Scrabble);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(20, 390, 1041, 1001));
+        gridLayoutWidget->setGeometry(QRect(20, 120, 281, 281));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setHorizontalSpacing(7);
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        verticalLayoutWidget = new QWidget(Scrabble);
+        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(20, 430, 281, 121));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
 
         retranslateUi(Scrabble);
 

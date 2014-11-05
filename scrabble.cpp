@@ -1,6 +1,7 @@
 #include "scrabble.h"
 #include "ui_scrabble.h"
 #include "keyboard.h"
+#include <QDebug>
 
 Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   QWidget(parent),
@@ -31,7 +32,10 @@ void Scrabble::generate()
 
 void Scrabble::buttonPressed()
 {
+  qDebug() << "here\n";
   QPushButton *button = dynamic_cast<QPushButton *>(sender());
   int x = pos[button].first, y = pos[button].second;
-
+  Keyboard *keyboard = new Keyboard();
+  ui->verticalLayout->addWidget(keyboard);
+  keyboard->show();
 }
