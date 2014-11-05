@@ -29,14 +29,17 @@ public:
     {
         if (Scrabble->objectName().isEmpty())
             Scrabble->setObjectName(QStringLiteral("Scrabble"));
-        Scrabble->resize(641, 696);
+        Scrabble->resize(1080, 1920);
+        Scrabble->setMinimumSize(QSize(324, 576));
+        Scrabble->setMaximumSize(QSize(1080, 1920));
         gridLayoutWidget = new QWidget(Scrabble);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(60, 70, 511, 521));
+        gridLayoutWidget->setGeometry(QRect(10, 440, 1051, 1001));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setHorizontalSpacing(7);
         gridLayout->setContentsMargins(0, 0, 0, 0);
 
         retranslateUi(Scrabble);
