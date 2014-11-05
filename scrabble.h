@@ -1,6 +1,4 @@
-#ifndef SCRABBLE_H
-#define SCRABBLE_H
-
+#pragma once
 #include <QWidget>
 #include "scrabblefunc.h"
 #include <map>
@@ -19,10 +17,12 @@ public:
   ~Scrabble();
   void generate();
 
+public slots:
+  void buttonPressed();
+
 private:
   Ui::Scrabble *ui;
   ScrabbleFunc *scrabble;
   std::map<QPushButton *, std::pair<int, int> > pos;
 };
 
-#endif // SCRABBLE_H

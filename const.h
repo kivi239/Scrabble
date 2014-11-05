@@ -1,9 +1,6 @@
-#ifndef CONST_H
-#define CONST_H
+#pragma once
 
 enum Const
 {
   Size = 5
 };
-
-#endif // CONST_H

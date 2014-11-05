@@ -1,6 +1,4 @@
-#ifndef FIELD_H
-#define FIELD_H
-
+#pragma once
 #include "const.h"
 
 class Field
@@ -16,4 +14,3 @@ private:
   char f[Size][Size];
 };
 
-#endif // FIELD_H

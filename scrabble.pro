@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     const.cpp \
     vocabulary.cpp \
     trie.cpp \
-    vocabularytest.cpp
+    vocabularytest.cpp \
+    keyboard.cpp
 
 
 HEADERS  += scrabble.h \
@@ -33,7 +34,8 @@ HEADERS  += scrabble.h \
     const.h \
     vocabulary.h \
     trie.h \
-    vocabularytest.h 
+    vocabularytest.h \  
+    keyboard.h
 
 FORMS    += scrabble.ui
 

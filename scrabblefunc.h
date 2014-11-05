@@ -1,6 +1,4 @@
-#ifndef SCRABBLEFUNC_H
-#define SCRABBLEFUNC_H
-
+#pragma once
 #include "field.h"
 #include <string>
 
@@ -21,4 +19,3 @@ private:
   std::string newWord;
 };
 
-#endif // SCRABBLEFUNC_H

@@ -1,5 +1,6 @@
 #include "scrabble.h"
 #include "ui_scrabble.h"
+#include "keyboard.h"
 
 Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   QWidget(parent),
@@ -24,5 +25,13 @@ void Scrabble::generate()
       button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
       pos[button] = std::make_pair(i, j);
       ui->gridLayout->addWidget(button, i, j);
+      connect(button, &QPushButton::clicked, this, &Scrabble::buttonPressed);
     }
+}
+
+void Scrabble::buttonPressed()
+{
+  QPushButton *button = dynamic_cast<QPushButton *>(sender());
+  int x = pos[button].first, y = pos[button].second;
+
 }
