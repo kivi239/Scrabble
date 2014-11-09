@@ -3,6 +3,7 @@
 #include "scrabblefunc.h"
 #include <map>
 #include <QPushButton>
+#include "keyboard.h"
 
 namespace Ui {
 class Scrabble;
@@ -24,5 +25,6 @@ private:
   Ui::Scrabble *ui;
   ScrabbleFunc *scrabble;
   std::map<QPushButton *, std::pair<int, int> > pos;
+  Keyboard *keyboard;
 };
 

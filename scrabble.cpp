@@ -2,11 +2,13 @@
 #include "ui_scrabble.h"
 #include "keyboard.h"
 #include <QDebug>
+#include <QFont>
 
 Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   QWidget(parent),
   ui(new Ui::Scrabble),
-  scrabble(new ScrabbleFunc(_countOfGamers))
+  scrabble(new ScrabbleFunc(_countOfGamers)),
+  keyboard(nullptr)
 {
   ui->setupUi(this);
   generate();
@@ -33,9 +35,12 @@ void Scrabble::generate()
 void Scrabble::buttonPressed()
 {
   qDebug() << "here\n";
+  delete keyboard;
+  keyboard = new Keyboard();
   QPushButton *button = dynamic_cast<QPushButton *>(sender());
+  button->setEnabled(false);
+  button->setStyleSheet("background-color: rgb(175, 238, 238)");
   int x = pos[button].first, y = pos[button].second;
-  Keyboard *keyboard = new Keyboard();
   ui->verticalLayout->addWidget(keyboard);
-  keyboard->show();
+  //keyboard->show();
 }

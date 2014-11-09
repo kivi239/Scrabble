@@ -32,12 +32,12 @@ public:
     {
         if (Scrabble->objectName().isEmpty())
             Scrabble->setObjectName(QStringLiteral("Scrabble"));
-        Scrabble->resize(324, 576);
+        Scrabble->resize(1080, 1920);
         Scrabble->setMinimumSize(QSize(324, 576));
-        Scrabble->setMaximumSize(QSize(324, 576));
+        Scrabble->setMaximumSize(QSize(1080, 1920));
         gridLayoutWidget = new QWidget(Scrabble);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(20, 120, 281, 281));
+        gridLayoutWidget->setGeometry(QRect(20, 330, 1041, 1001));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -45,7 +45,7 @@ public:
         gridLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayoutWidget = new QWidget(Scrabble);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 430, 281, 121));
+        verticalLayoutWidget->setGeometry(QRect(20, 1390, 1041, 391));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
