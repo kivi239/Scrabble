@@ -4,7 +4,7 @@
 
 Vocabulary::Vocabulary()
 {
-    myTrie = new Trie();
+    myTrie = new Trie();    
 }
 
 Vocabulary::~Vocabulary()
@@ -27,5 +27,10 @@ bool Vocabulary::add(string &word)
 {
     bool result = myTrie->setWord(word);
     return result;
+}
+
+string Vocabulary::getRandomStartWord()
+{
+    return myTrie->getRandomWord(Size);
 }
 

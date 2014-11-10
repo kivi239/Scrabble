@@ -7,6 +7,9 @@ Trie::Trie()
     trie.clear();
     trie.push_back(make_pair(0, emptyMap));
     sizeOfTrie = 0;
+    for (int i = 0; i < 26; i++)
+        stepsInSearch[i] = (char)('a' + i);
+    srand(time(0));
 }
 
 Trie::~Trie()
@@ -78,4 +81,35 @@ bool Trie::setWord(string &word)
     }
     trie[currentPosition].first = 2;
     return true;
+}
+
+
+string Trie::getRandomWord(int lengthOfWord)
+{
+    vector <string> result;
+    result.clear();
+    random_shuffle(stepsInSearch, stepsInSearch + 26);
+    findWord(0, lengthOfWord, result, "");
+    random_shuffle(result.begin(), result.end());
+    return result[0];
+}
+
+void Trie::findWord(int currentVertex, int lengthOfWord, vector<string> &result, string tmpWord)
+{
+    if (lengthOfWord == 0)
+    {
+        if (trie[currentVertex].first == 1)
+            result.push_back(tmpWord);
+        return;
+    }
+    if ((int)(result.size()) > 40)
+        return;
+    for (int i = 0; i < 26; i++)
+    {
+        if (trie[currentVertex].second.find(stepsInSearch[i]) == trie[currentVertex].second.end())
+            continue;
+        findWord(trie[currentVertex].second[stepsInSearch[i]], lengthOfWord - 1, result, tmpWord + stepsInSearch[i]);
+        if ((int)(result.size()) > 40)
+            return;
+    }
 }

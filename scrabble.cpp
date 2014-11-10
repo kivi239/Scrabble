@@ -8,14 +8,16 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   QWidget(parent),
   ui(new Ui::Scrabble),
   scrabble(new ScrabbleFunc(_countOfGamers)),
-  keyboard(nullptr)
+  keyboard(nullptr),
+  vocabulary(new Vocabulary)
 {
   ui->setupUi(this);
-  generate();
+  generate();  
 }
 
 Scrabble::~Scrabble()
 {
+  delete vocabulary;
   delete ui;
 }
 
@@ -34,7 +36,7 @@ void Scrabble::generate()
 
 void Scrabble::buttonPressed()
 {
-  qDebug() << "here\n";
+  //qDebug() << "here\n";
   delete keyboard;
   keyboard = new Keyboard();
   QPushButton *button = dynamic_cast<QPushButton *>(sender());
