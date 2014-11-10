@@ -31,3 +31,15 @@ void Field::setCell(int x, int y, char c)
     return;
   f[x][y] = c;
 }
+
+void Field::debugOutput()
+{
+    for (int i = 0; i < Size; i++)
+    {
+        QString nobodyReadsIt = "";
+        for (int j = 0; j < Size; j++)
+           nobodyReadsIt += f[i][j];
+        qDebug() << nobodyReadsIt;
+        qDebug() << '\n';
+    }
+}

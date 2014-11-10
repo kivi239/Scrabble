@@ -12,7 +12,8 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   vocabulary(new Vocabulary)
 {
   ui->setupUi(this);
-  generate();  
+  generate();
+
 }
 
 Scrabble::~Scrabble()
@@ -42,7 +43,7 @@ void Scrabble::buttonPressed()
   QPushButton *button = dynamic_cast<QPushButton *>(sender());
   button->setEnabled(false);
   button->setStyleSheet("background-color: rgb(175, 238, 238)");
-  int x = pos[button].first, y = pos[button].second;
+  //int x = pos[button].first, y = pos[button].second;
   ui->verticalLayout->addWidget(keyboard);
   //keyboard->show();
 }

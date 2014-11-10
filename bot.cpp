@@ -2,7 +2,7 @@
 
 Bot::Bot():
 easyBot(new EasyBot)
-{
+{    
 }
 
 Bot::~Bot()
@@ -10,7 +10,7 @@ Bot::~Bot()
     delete easyBot;
 }
 
-Cell Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)
+vector<Cell> Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)
 {
     if (level <= EasyLevel)
         return easyBot->nextTurn(field, vocabulary);

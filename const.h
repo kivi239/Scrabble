@@ -2,10 +2,10 @@
 
 enum Const
 {
-  Size = 5
+  EasyLevel = 3,
+  directionNumber = 4,
+  Size = 5,
+  sizeOfAlphabet = 26
 };
 
-enum BotLevel
-{
-    EasyLevel = 3
-};
+

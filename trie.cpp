@@ -7,9 +7,8 @@ Trie::Trie()
     trie.clear();
     trie.push_back(make_pair(0, emptyMap));
     sizeOfTrie = 0;
-    for (int i = 0; i < 26; i++)
-        stepsInSearch[i] = (char)('a' + i);
-    srand(time(0));
+    for (int i = 0; i < sizeOfAlphabet; i++)
+        stepsInSearch[i] = (char)('a' + i);   
 }
 
 Trie::~Trie()
@@ -88,10 +87,28 @@ string Trie::getRandomWord(int lengthOfWord)
 {
     vector <string> result;
     result.clear();
-    random_shuffle(stepsInSearch, stepsInSearch + 26);
+    random_shuffle(stepsInSearch, stepsInSearch + sizeOfAlphabet);
     findWord(0, lengthOfWord, result, "");
     random_shuffle(result.begin(), result.end());
     return result[0];
+}
+
+int Trie::nextVertex(int v, char ch)
+{
+    if (v < 0 || (int)trie.size() <= v)
+        return -1;
+
+    if (trie[v].second.find(ch) == trie[v].second.end())
+        return -1;
+
+    return trie[v].second[ch];
+}
+
+int Trie::getValue(int v)
+{
+    if (v < 0 || (int)trie.size() <= v)
+        return -1;
+    return trie[v].first;
 }
 
 void Trie::findWord(int currentVertex, int lengthOfWord, vector<string> &result, string tmpWord)
@@ -104,7 +121,7 @@ void Trie::findWord(int currentVertex, int lengthOfWord, vector<string> &result,
     }
     if ((int)(result.size()) > 40)
         return;
-    for (int i = 0; i < 26; i++)
+    for (int i = 0; i < sizeOfAlphabet; i++)
     {
         if (trie[currentVertex].second.find(stepsInSearch[i]) == trie[currentVertex].second.end())
             continue;

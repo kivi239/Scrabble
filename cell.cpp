@@ -22,3 +22,7 @@ char Cell::getCh()
 {
     return ch;
 }
+
+Cell::~Cell()
+{
+}

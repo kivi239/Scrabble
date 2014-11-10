@@ -1,3 +1,4 @@
+#pragma once
 #include "vocabulary.h"
 #include <QObject>
 #include <QtCore/QObject>

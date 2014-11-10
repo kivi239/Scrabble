@@ -19,6 +19,8 @@ void Vocabulary::build()
     string wordFromDictionary;
     while(reader >> wordFromDictionary)
     {
+        if ((int)wordFromDictionary.size() < 3)
+            continue;
         myTrie->add(wordFromDictionary);
     }    
 }
@@ -32,5 +34,10 @@ bool Vocabulary::add(string &word)
 string Vocabulary::getRandomStartWord()
 {
     return myTrie->getRandomWord(Size);
+}
+
+Trie *Vocabulary::getTrie()
+{
+    return myTrie;
 }
 

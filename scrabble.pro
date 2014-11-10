@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     botinterface.cpp \
     cell.cpp \
     easybot.cpp \
-    bot.cpp
+    bot.cpp \
+    bottest.cpp
 
 
 HEADERS  += scrabble.h \
@@ -43,7 +44,8 @@ HEADERS  += scrabble.h \
     botinterface.h \
     cell.h \
     easybot.h \
-    bot.h
+    bot.h \
+    bottest.h
 
 
 FORMS    += scrabble.ui

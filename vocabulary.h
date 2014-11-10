@@ -10,6 +10,7 @@ public:
     void build();
     bool add(string &word);
     string getRandomStartWord();
+    Trie *getTrie();
 private:
     Trie * myTrie;
 };

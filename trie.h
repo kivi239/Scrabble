@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cassert>
 #include <ctime>
+#include <algorithm>
+#include "const.h"
 
 using namespace std;
 
@@ -17,6 +19,8 @@ public:
     bool isHave(string &word);
     bool setWord(string &word);
     string getRandomWord(int lengthOfWord);
+    int nextVertex(int v, char ch);
+    int getValue(int v);
 
 private:
     int sizeOfTrie;
@@ -24,6 +28,6 @@ private:
     bool isGood(string &word);
     map <char, int> emptyMap;
     vector < pair <int, map <char, int> > > trie;
-    char stepsInSearch[26];
+    char stepsInSearch[sizeOfAlphabet];
 };
 
