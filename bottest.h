@@ -21,26 +21,31 @@ private slots:
 
     void setStartWord()
     {
-        string startWord = vocabulary->getRandomStartWord();
+       // string startWord = vocabulary->getRandomStartWord();
+        string startWord = "pipit";
         vocabulary->add(startWord);
 
         for (int i = 0; i < Size; i++)
             field->setCell(2, i, startWord[i]);
 
-        printField();
+      //  printField();
     }
 
     void makeStep()
     {
         vector <Cell> result = bot->nextTurn(3, field, vocabulary);
-        for (int i = 0; i < (int)result.size(); i++)
-        {
-            Cell tmpCell = result[i];
-            qDebug() << tmpCell.getX() << " " << tmpCell.getY() << " " << tmpCell.getCh() << "\n";
-            field->setCell(tmpCell.getX(), tmpCell.getY(), tmpCell.getCh());
-        }
 
-        printField();
+        int xx = result.back().getX();
+        int yy = result.back().getY();
+        char ch = result.back().getCh();
+
+       // qDebug() << xx << " " << yy << " " << ch << "\n";
+
+        field->setCell(xx, yy, ch);
+
+        //printField();
+
+       // cerr << field->getCell(xx, yy) << endl;
     }
 
     void cleanup()

@@ -28,8 +28,8 @@ void Field::setCell(int x, int y, char c)
   if (x < 0 || x >= Size || y < 0 || y >= Size)
     return;
   if (f[x][y] != '\0')
-    return;
-  f[x][y] = c;
+    return;  
+  f[x][y] = c;  
 }
 
 void Field::debugOutput()

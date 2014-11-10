@@ -13,9 +13,7 @@ vector <Cell> EasyBot::nextTurn(Field *field, Vocabulary *vocabulary)
 {
     botTrie = vocabulary->getTrie();
     botField = field;
-    results.clear();
-
-    botField->debugOutput();
+    results.clear();  
 
     for (int i = 0; i < Size; i++)
         for (int j = 0; j < Size; j++)
@@ -66,6 +64,9 @@ void EasyBot::searchWords(int currentVertex, int remainingLength, int currentX, 
             continue;
         if (ch == '\0')
         {
+            if (used[nextX][nextY])
+                continue;
+
             for (int letterId = 0; letterId < sizeOfAlphabet; letterId++)
             {
                 int nextVertex = botTrie->nextVertex(currentVertex, stepsInSearch[letterId]);
@@ -80,6 +81,10 @@ void EasyBot::searchWords(int currentVertex, int remainingLength, int currentX, 
             }
             continue;
         }
+
+        if (used[nextX][nextY])
+            continue;
+
         int nextVertex = botTrie->nextVertex(currentVertex, ch);
         if (nextVertex > 0)
         {
