@@ -19,7 +19,7 @@ Field::~Field() {}
 char Field::getCell(int x, int y)
 {
   if (x < 0 || x >= Size || y < 0 || y >= Size)
-    return '\0';
+    return '!';
   return f[x][y];
 }
 
