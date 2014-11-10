@@ -27,7 +27,9 @@ SOURCES += main.cpp\
     vocabularytest.cpp \
     keyboard.cpp \
     botinterface.cpp \
-    cell.cpp
+    cell.cpp \
+    easybot.cpp \
+    bot.cpp
 
 
 HEADERS  += scrabble.h \
@@ -39,7 +41,9 @@ HEADERS  += scrabble.h \
     vocabularytest.h \  
     keyboard.h \ 
     botinterface.h \
-    cell.h
+    cell.h \
+    easybot.h \
+    bot.h
 
 
 FORMS    += scrabble.ui

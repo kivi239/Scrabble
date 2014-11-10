@@ -8,6 +8,6 @@ class BotInterface
 public:
     BotInterface();
     virtual Cell nextTurn(Field *field, Vocabulary *vocabulary) = 0;
-    virtual ~BotInterface() = 0;
+    virtual ~BotInterface(){}
 };
 
