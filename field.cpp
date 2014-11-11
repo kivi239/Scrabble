@@ -29,7 +29,7 @@ void Field::setCell(int x, int y, char c)
     return;
   if (f[x][y] != '\0')
     return;  
-  f[x][y] = c;  
+  f[x][y] = c;    
 }
 
 void Field::debugOutput()

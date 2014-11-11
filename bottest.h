@@ -21,8 +21,7 @@ private slots:
 
     void setStartWord()
     {
-       // string startWord = vocabulary->getRandomStartWord();
-        string startWord = "pipit";
+        string startWord = vocabulary->getRandomStartWord();
         vocabulary->add(startWord);
 
         for (int i = 0; i < Size; i++)
@@ -39,13 +38,13 @@ private slots:
         int yy = result.back().getY();
         char ch = result.back().getCh();
 
-       // qDebug() << xx << " " << yy << " " << ch << "\n";
+        qDebug() << xx << " " << yy << " " << ch << "\n";
 
         field->setCell(xx, yy, ch);
 
-        //printField();
+        field->debugOutput();
 
-       // cerr << field->getCell(xx, yy) << endl;
+        cerr << field->getCell(xx, yy) << endl;
     }
 
     void cleanup()
