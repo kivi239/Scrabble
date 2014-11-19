@@ -23,6 +23,7 @@ public:
 public slots:
   void buttonPressed();
   void letterPressed();
+  void cancelPressed();
 
 private:
   Ui::Scrabble *ui;
