@@ -18,6 +18,7 @@ void Vocabulary::build()
     QFile reader(":/new/prefix1/vocabulary.txt");
     if (!reader.open(QIODevice::ReadOnly | QIODevice::Text))
     {
+        assert(false);
     }
     QTextStream inReader(&reader);
     string wordFromDictionary;
