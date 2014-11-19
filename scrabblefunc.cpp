@@ -22,3 +22,8 @@ void ScrabbleFunc::cancelFieldChange()
 {
   newField = field;
 }
+
+char ScrabbleFunc::getOldCell(int x, int y)
+{
+  return field.getCell(x, y);
+}

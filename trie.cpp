@@ -8,7 +8,7 @@ Trie::Trie()
     trie.push_back(make_pair(0, emptyMap));
     sizeOfTrie = 0;
     for (int i = 0; i < sizeOfAlphabet; i++)
-        stepsInSearch[i] = (char)('a' + i);   
+        stepsInSearch[i] = (char)('a' + i);
 }
 
 Trie::~Trie()
@@ -39,7 +39,7 @@ void Trie::add(string &word)
         return;
     int currentPosition = 0;
     for (int i = 0; i < (int)word.size(); i++)
-    {       
+    {
         int nextPosition = -1;
 
         if (trie[currentPosition].second.find(word[i]) == trie[currentPosition].second.end())
@@ -53,13 +53,13 @@ void Trie::add(string &word)
             nextPosition = trie[currentPosition].second[word[i]];
         assert(nextPosition != -1);
         currentPosition = nextPosition;
-    }    
+    }
     trie[currentPosition].first = 1;
 }
 
 bool Trie::isHave(string &word)
 {
-    int currentPosition = 0;    
+    int currentPosition = 0;
     for (int i = 0; i < (int)word.size(); i++)
     {
         if (trie[currentPosition].second.find(word[i]) == trie[currentPosition].second.end())

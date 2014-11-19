@@ -9,12 +9,13 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   ui(new Ui::Scrabble),
   scrabble(new ScrabbleFunc(_countOfGamers)),
   keyboard(nullptr),
-  newCell(std::make_pair(-1, -1)),
+  newCell(make_pair(-1, -1)),
   vocabulary(new Vocabulary)
 {
   ui->setupUi(this);
-  generate();
-
+  vocabulary->build();
+  string word = vocabulary->getRandomStartWord();
+  generate(word);
 }
 
 Scrabble::~Scrabble()
@@ -23,27 +24,41 @@ Scrabble::~Scrabble()
   delete ui;
 }
 
-void Scrabble::generate()
+void Scrabble::generate(string word)
 {
   for (int i = 0; i < Size; i++)
     for (int j = 0; j < Size; j++)
     {
       QPushButton *button = new QPushButton;
       button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-      pos[button] = std::make_pair(i, j);
+      pos[button] = make_pair(i, j);
       ui->gridLayout->addWidget(button, i, j);
       connect(button, &QPushButton::clicked, this, &Scrabble::buttonPressed);
+      if (i == Size / 2)
+      {
+        QString str = "";
+        str += word[j];
+        scrabble->setCell(i, j, word[i]);
+        button->setText(str);
+      }
     }
+  scrabble->updateField();
 }
 
 void Scrabble::buttonPressed()
 {
+  QPushButton *button = dynamic_cast<QPushButton *>(sender());
+  newCell = pos[button];
+  char letter = scrabble->getOldCell(newCell.first, newCell.second);
+  if (letter != '\0' || letter == '!')
+  {
+    newCell = make_pair(-1, -1);
+    return;
+  }
   delete keyboard;
   keyboard = new Keyboard();
   connect(keyboard, &Keyboard::throwSignal, this, &Scrabble::letterPressed);
-  QPushButton *button = dynamic_cast<QPushButton *>(sender());
-  newCell = pos[button];
-  for (std::map<QPushButton*, std::pair<int, int> > ::iterator it = pos.begin(); it != pos.end(); it++)
+  for (map<QPushButton*, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
     it->first->setEnabled(false);
   button->setStyleSheet("background-color: rgb(175, 238, 238)");
   ui->verticalLayout->addWidget(keyboard);
@@ -56,7 +71,7 @@ void Scrabble::letterPressed()
   char letter = keyboard->getLetter();
   scrabble->setCell(newCell.first, newCell.second, letter);
   QPushButton *button = nullptr;
-  for (std::map<QPushButton *, std::pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
     if (it->second == newCell)
     {
       button = it->first;
@@ -75,12 +90,12 @@ void Scrabble::letterPressed()
 
 void Scrabble::copyFromField()
 {
-  for (std::map<QPushButton *, std::pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
   {
     pair<int, int> position = it->second;
     QString str = "";
     char letter = scrabble->getCell(position.first, position.second);
-    if (letter != '!')
+    if (letter != '!' && letter != '\0')
       str += letter;
     it->first->setText(str);
   }

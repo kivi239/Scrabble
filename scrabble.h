@@ -17,7 +17,7 @@ class Scrabble : public QWidget
 public:
   explicit Scrabble(int _countOfGamers, QWidget *parent = 0);
   ~Scrabble();
-  void generate();
+  void generate(string word);
   void copyFromField();
 
 public slots:
