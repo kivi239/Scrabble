@@ -4,7 +4,8 @@
 Keyboard::Keyboard(QWidget *parent) :
   QWidget(parent),
   layouts(nullptr),
-  layout(new QVBoxLayout)
+  layout(new QVBoxLayout),
+  letter('\0')
 {
   generate();
 }
@@ -23,8 +24,10 @@ void Keyboard::generate()
       QString letter= "";
       letter += (char)('a' + i * 9 + j);
       QPushButton *newButton = new QPushButton(letter);
+      buttons[newButton] = (char)('a' + i * 9 + j);
       newButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
       layouts[i]->addWidget(newButton);
+      connect(newButton, &QPushButton::clicked, this, &Keyboard::letterPressed);
     }
   }
 
@@ -33,3 +36,27 @@ void Keyboard::generate()
   setLayout(layout);
 }
 
+void Keyboard::makeEnable()
+{
+  for (std::map<QPushButton *, char>::iterator it = buttons.begin(); it != buttons.end(); it++)
+    (it)->first->setEnabled(true);
+}
+
+void Keyboard::makeUnable()
+{
+  for (std::map<QPushButton *, char>::iterator it = buttons.begin(); it != buttons.end(); it++)
+    (it)->first->setEnabled(false);
+}
+
+void Keyboard::letterPressed()
+{
+  makeUnable();
+  QPushButton *button = dynamic_cast<QPushButton *>(sender());
+  letter = buttons[button];
+  throwSignal();
+}
+
+char Keyboard::getLetter()
+{
+  return letter;
+}

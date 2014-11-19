@@ -21,6 +21,7 @@ public:
 
 public slots:
   void buttonPressed();
+  void letterPressed();
 
 private:
   Ui::Scrabble *ui;
@@ -28,5 +29,6 @@ private:
   std::map<QPushButton *, std::pair<int, int> > pos;
   Keyboard *keyboard;
   Vocabulary *vocabulary;
+  std::pair<int, int> newCell;
 };
 

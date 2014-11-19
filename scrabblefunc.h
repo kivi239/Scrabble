@@ -9,6 +9,7 @@ public:
   ~ScrabbleFunc();
   void setCell(int x, int y, char c);
   char getCell(int x, int y);
+  void updateField();
 
 private:
   int countOfGamers;
