@@ -5,14 +5,15 @@
 class Vocabulary
 {
 public:
-    Vocabulary();
-    ~Vocabulary();
-    void build();
-    bool add(string &word);
-    string getRandomStartWord();
-    Trie *getTrie();
+  Vocabulary();
+  ~Vocabulary();
+  void build();
+  bool add(string &word);
+  string getRandomStartWord();
+  Trie *getTrie();
+
 private:
-    Trie * myTrie;
+  Trie * myTrie;
 };
 
 

@@ -1,5 +1,4 @@
-#ifndef STARTMENU_H
-#define STARTMENU_H
+#pragma once
 
 #include <QWidget>
 
@@ -9,17 +8,17 @@ class StartMenu;
 
 class StartMenu : public QWidget
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit StartMenu(QWidget *parent = 0);
-    ~StartMenu();
+  explicit StartMenu(QWidget *parent = 0);
+  ~StartMenu();
 
 signals:
-    void startGame();
+  void startGame();
 
 private:
-    Ui::StartMenu *ui;
+  Ui::StartMenu *ui;
 };
 
-#endif // STARTMENU_H
+

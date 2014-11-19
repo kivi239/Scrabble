@@ -38,7 +38,6 @@ void Scrabble::generate()
 
 void Scrabble::buttonPressed()
 {
-  //qDebug() << "here\n";
   delete keyboard;
   keyboard = new Keyboard();
   connect(keyboard, &Keyboard::throwSignal, this, &Scrabble::letterPressed);

@@ -13,8 +13,10 @@ int main(int argc, char *argv[])
   QTest::qExec(&bTest);
   QApplication a(argc, argv);
   Scrabble w(2);
-  StartMenu gameMenu;
-  QObject::connect(&gameMenu, SIGNAL(startGame()), &w, SLOT(show()));
-  gameMenu.show();
+  w.show();
+  //StartMenu gameMenu;
+  //QObject::connect(&gameMenu, SIGNAL(startGame()), &w, SLOT(show()));
+  //gameMenu.show();
+
   return a.exec();
 }
