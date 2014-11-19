@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     cell.cpp \
     easybot.cpp \
     bot.cpp \
-    bottest.cpp
+    bottest.cpp \
+    startmenu.cpp
 
 
 HEADERS  += scrabble.h \
@@ -45,10 +46,12 @@ HEADERS  += scrabble.h \
     cell.h \
     easybot.h \
     bot.h \
-    bottest.h
+    bottest.h \
+    startmenu.h
 
 
-FORMS    += scrabble.ui
+FORMS    += scrabble.ui \
+    startmenu.ui
 
 CONFIG += mobility
 MOBILITY = 
