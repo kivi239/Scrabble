@@ -38,13 +38,11 @@ private slots:
         int yy = result.back().getY();
         char ch = result.back().getCh();
 
-        qDebug() << xx << " " << yy << " " << ch << "\n";
+        //qDebug() << xx << " " << yy << " " << ch << "\n";
 
         field->setCell(xx, yy, ch);
 
-        field->debugOutput();
-
-        cerr << field->getCell(xx, yy) << endl;
+        //cerr << field->getCell(xx, yy) << endl;
     }
 
     void cleanup()

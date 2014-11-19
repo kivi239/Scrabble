@@ -66,4 +66,10 @@ void Scrabble::letterPressed()
   QString str = "";
   str += letter;
   button->setText(str);
+  delete keyboard;
+}
+
+void Scrabble::copyFromField()
+{
+
 }

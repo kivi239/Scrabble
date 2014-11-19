@@ -6,6 +6,7 @@
 
 int main(int argc, char *argv[])
 {
+  Q_INIT_RESOURCE(MyRes);
   srand (time (0));
   VocabularyTest vTest;
   QTest::qExec(&vTest);
@@ -13,10 +14,9 @@ int main(int argc, char *argv[])
   QTest::qExec(&bTest);
   QApplication a(argc, argv);
   Scrabble w(2);
-  w.show();
-  //StartMenu gameMenu;
-  //QObject::connect(&gameMenu, SIGNAL(startGame()), &w, SLOT(show()));
-  //gameMenu.show();
+  StartMenu gameMenu;
+  QObject::connect(&gameMenu, SIGNAL(startGame()), &w, SLOT(show()));
+  gameMenu.show();
 
   return a.exec();
 }

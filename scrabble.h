@@ -18,6 +18,7 @@ public:
   explicit Scrabble(int _countOfGamers, QWidget *parent = 0);
   ~Scrabble();
   void generate();
+  void copyFromField();
 
 public slots:
   void buttonPressed();

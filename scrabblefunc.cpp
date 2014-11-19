@@ -10,10 +10,15 @@ void ScrabbleFunc::setCell(int x, int y, char c)
 
 char ScrabbleFunc::getCell(int x, int y)
 {
-    return newField.getCell(x, y);
+  return newField.getCell(x, y);
 }
 
 void ScrabbleFunc::updateField()
 {
-    field = newField;
+  field = newField;
+}
+
+void ScrabbleFunc::cancelFieldChange()
+{
+  newField = field;
 }
