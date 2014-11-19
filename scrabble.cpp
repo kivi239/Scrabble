@@ -38,7 +38,7 @@ void Scrabble::generate(string word)
       {
         QString str = "";
         str += word[j];
-        scrabble->setCell(i, j, word[i]);
+        scrabble->setCell(i, j, word[j]);
         button->setText(str);
       }
     }
