@@ -88,6 +88,15 @@ void Scrabble::copyFromField()
 
 void Scrabble::cancelPressed()
 {
+  QPushButton *button = nullptr;
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+    if (it->second == newCell)
+    {
+      button = it->first;
+      break;
+    }
+  assert(button != nullptr);
+  button->setStyleSheet("");
   newCell = make_pair(-1, -1);
   scrabble->cancelFieldChange();
   copyFromField();
