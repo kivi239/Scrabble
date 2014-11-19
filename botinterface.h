@@ -7,7 +7,7 @@ class BotInterface
 {
 public:
     BotInterface();
-    virtual Cell nextTurn(Field *field, Vocabulary *vocabulary) = 0;
+    virtual vector<Cell> nextTurn(Field *field, Vocabulary *vocabulary) = 0;
     virtual ~BotInterface(){}
 };
 
