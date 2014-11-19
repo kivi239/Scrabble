@@ -15,7 +15,7 @@ TARGET = scrabble
 TEMPLATE = app
 
 RESOURCES += \
-    files.qrc 
+    MyRes.qrc
 
 SOURCES += main.cpp\
         scrabble.cpp \
