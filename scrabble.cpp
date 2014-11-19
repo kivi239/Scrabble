@@ -66,4 +66,31 @@ void Scrabble::letterPressed()
   QString str = "";
   str += letter;
   button->setText(str);
+  delete keyboard;
+  QPushButton *cancelButton = new QPushButton;
+  cancelButton->setText("Cancel");
+  ui->verticalLayout->addWidget(cancelButton);
+  connect(cancelButton, &QPushButton::clicked, this, &Scrabble::cancelPressed);
+}
+
+void Scrabble::copyFromField()
+{
+  for (std::map<QPushButton *, std::pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+  {
+    pair<int, int> position = it->second;
+    QString str = "";
+    char letter = scrabble->getCell(position.first, position.second);
+    if (letter != '!')
+      str += letter;
+    it->first->setText(str);
+  }
+}
+
+void Scrabble::cancelPressed()
+{
+  newCell = make_pair(-1, -1);
+  scrabble->cancelFieldChange();
+  copyFromField();
+  QPushButton *cancelButton = dynamic_cast<QPushButton *>(sender());
+  delete cancelButton;
 }
