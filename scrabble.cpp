@@ -3,6 +3,7 @@
 #include "keyboard.h"
 #include <QDebug>
 #include <QFont>
+#include <QMessageBox>
 
 Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   QWidget(parent),
@@ -11,7 +12,9 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   keyboard(nullptr),
   vocabulary(new Vocabulary),
   newCell(make_pair(-1, -1)),
-  enterWord(false)
+  enterWord(false),
+  okButton(nullptr),
+  cancelButton(nullptr)
 {
   ui->setupUi(this);
   vocabulary->build();
@@ -93,12 +96,12 @@ void Scrabble::letterPressed()
   button->setText(str);
   keyboard->hide();
 
-  QPushButton *okButton = new QPushButton;
+  okButton = new QPushButton;
   okButton->setText("Ok");
   connect(okButton, &QPushButton::clicked, this, &Scrabble::okPressed);
   ui->verticalLayout->addWidget(okButton);
 
-  QPushButton *cancelButton = new QPushButton;
+  cancelButton = new QPushButton;
   cancelButton->setText("Cancel");
   ui->verticalLayout->addWidget(cancelButton);
   connect(cancelButton, &QPushButton::clicked, this, &Scrabble::cancelPressed);
@@ -132,6 +135,14 @@ void Scrabble::makeUnable()
     it->first->setEnabled(false);
 }
 
+QPushButton *Scrabble::buttonFrom(pair<int, int> coord)
+{
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+    if (it->second == coord)
+      return it->first;
+  return nullptr;
+}
+
 void Scrabble::cancelPressed()
 {
   QPushButton *button = nullptr;
@@ -146,8 +157,8 @@ void Scrabble::cancelPressed()
   newCell = make_pair(-1, -1);
   scrabble->cancelFieldChange();
   copyFromField();
-  QPushButton *cancelButton = dynamic_cast<QPushButton *>(sender());
   delete cancelButton;
+  delete okButton;
   makeEnable();
   enterWord = false;
 }
@@ -171,5 +182,34 @@ void Scrabble::buttonMarked()
 
 void Scrabble::okPressed()
 {
-
+  string newWord = "";
+  bool ok = false;
+  for (int i = 0; i < (int)word.size(); i++)
+  {
+    ok |= (word[i] == newCell);
+    newWord += scrabble->getCell(word[i].first, word[i].second);
+  }
+  word.empty();
+  makeEnable();
+  if (!vocabulary->getTrie()->isHave(newWord))
+  {
+    QMessageBox msgBox;
+    msgBox.setText("There is no such word");
+    msgBox.exec();
+    return;
+  }
+  if (!ok)
+  {
+    QMessageBox msgBox;
+    msgBox.setText("You should include new letter to the word");
+    msgBox.exec();
+    return;
+  }
+  scrabble->updateField();
+  delete okButton;
+  delete cancelButton;
+  okButton = nullptr;
+  cancelButton = nullptr;
+  enterWord = false;
+  buttonFrom(newCell)->setStyleSheet("");
 }

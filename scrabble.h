@@ -29,6 +29,7 @@ private:
   void copyFromField();
   void makeEnable();
   void makeUnable();
+  QPushButton *buttonFrom(pair<int, int> coord);
 
   Ui::Scrabble *ui;
   ScrabbleFunc *scrabble;
@@ -38,5 +39,6 @@ private:
   std::pair<int, int> newCell;
   bool enterWord;
   vector<pair<int, int> > word;
+  QPushButton *okButton, *cancelButton;
 };
 
