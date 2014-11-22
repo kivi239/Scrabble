@@ -32,5 +32,6 @@ private:
   Keyboard *keyboard;
   Vocabulary *vocabulary;
   std::pair<int, int> newCell;
+  bool enterWord;
 };
 

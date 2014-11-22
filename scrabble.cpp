@@ -10,7 +10,8 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   scrabble(new ScrabbleFunc(_countOfGamers)),
   keyboard(nullptr),
   vocabulary(new Vocabulary),
-  newCell(make_pair(-1, -1))
+  newCell(make_pair(-1, -1)),
+  enterWord(false)
 {
   ui->setupUi(this);
   vocabulary->build();
@@ -47,10 +48,10 @@ void Scrabble::generate(string word)
 
 void Scrabble::buttonPressed()
 {
-  qDebug() << "here\n";
   QPushButton *button = dynamic_cast<QPushButton *>(sender());
   newCell = pos[button];
-  qDebug() << newCell.first << ' ' << newCell.second << '\n';
+  if (scrabble->isIsolated(newCell.first, newCell.second))
+    return;
   char letter = scrabble->getOldCell(newCell.first, newCell.second);
   if (letter != '\0' || letter == '!')
   {
@@ -88,7 +89,6 @@ void Scrabble::letterPressed()
   QString str = "";
   str += letter;
   button->setText(str);
-  //delete keyboard;
   keyboard->hide();
   QPushButton *cancelButton = new QPushButton;
   cancelButton->setText("Cancel");

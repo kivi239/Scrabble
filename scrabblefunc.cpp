@@ -27,3 +27,15 @@ char ScrabbleFunc::getOldCell(int x, int y)
 {
   return field.getCell(x, y);
 }
+
+bool ScrabbleFunc::isIsolated(int x, int y)
+{
+  int moveX[4] = {1, -1, 0, 0};
+  int moveY[4] = {0, 0, 1, -1};
+  for (int i = 0; i < 4; i++)
+    if (x + moveX[i] >= 0 && x + moveX[i] < Size
+        && y + moveY[i] >= 0 && y + moveY[i] < Size
+        && field.getCell(x + moveX[i], y + moveY[i]) != '!' && field.getCell(x + moveX[i], y + moveY[i]) != '\0')
+      return false;
+  return true;
+}
