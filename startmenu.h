@@ -1,6 +1,5 @@
 #pragma once
-
-#include <QWidget>
+#include "mainHeader.h"
 
 namespace Ui {
 class StartMenu;
@@ -13,6 +12,10 @@ class StartMenu : public QWidget
 public:
   explicit StartMenu(QWidget *parent = 0);
   ~StartMenu();
+
+
+void paintEvent(QPaintEvent *);
+
 
 signals:
   void startGame();

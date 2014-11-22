@@ -1,9 +1,8 @@
 #pragma once
-#include <QWidget>
-#include <map>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include "mainHeader.h"
 
 class Keyboard : public QWidget
 {

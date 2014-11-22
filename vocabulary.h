@@ -1,6 +1,7 @@
 #pragma once
 #include "trie.h"
 #include "const.h"
+#include "mainHeader.h"
 
 class Vocabulary
 {

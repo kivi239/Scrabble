@@ -1,5 +1,4 @@
 #include "easybot.h"
-#include <QDebug>
 
 EasyBot::EasyBot()
 {
