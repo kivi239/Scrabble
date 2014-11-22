@@ -1,5 +1,6 @@
 #pragma once
 #include "botinterface.h"
+#include "mainHeader.h"
 
 class EasyBot : public BotInterface
 {

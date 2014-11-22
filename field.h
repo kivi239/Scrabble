@@ -1,7 +1,6 @@
 #pragma once
 #include "const.h"
-#include <QDebug>
-
+#include "mainHeader.h"
 class Field
 {
 public:

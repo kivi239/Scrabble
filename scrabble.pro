@@ -8,6 +8,7 @@ QT       += core gui
 QT       += testlib
 CONFIG   += c++11
 CONFIG   += console
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,7 +32,8 @@ SOURCES += main.cpp\
     easybot.cpp \
     bot.cpp \
     bottest.cpp \
-    startmenu.cpp
+    startmenu.cpp \
+    user.cpp
 
 
 HEADERS  += scrabble.h \
@@ -47,7 +49,9 @@ HEADERS  += scrabble.h \
     easybot.h \
     bot.h \
     bottest.h \
-    startmenu.h
+    startmenu.h \
+    user.h \
+    mainHeader.h
 
 
 FORMS    += scrabble.ui

@@ -1,5 +1,4 @@
 #include "keyboard.h"
-#include <QString>
 
 Keyboard::Keyboard(QWidget *parent) :
   QWidget(parent),

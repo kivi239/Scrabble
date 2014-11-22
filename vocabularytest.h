@@ -1,8 +1,8 @@
 #pragma once
 #include "vocabulary.h"
-#include <QObject>
 #include <QtCore/QObject>
 #include <QtTest/QtTest>
+#include "mainHeader.h"
 
 
 class VocabularyTest : public QObject

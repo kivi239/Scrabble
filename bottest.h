@@ -1,7 +1,7 @@
 #pragma once
 #include "vocabulary.h"
 #include "bot.h"
-#include <QObject>
+#include "mainHeader.h"
 #include <QtCore/QObject>
 #include <QtTest/QtTest>
 

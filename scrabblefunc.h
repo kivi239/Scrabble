@@ -1,6 +1,6 @@
 #pragma once
 #include "field.h"
-#include <string>
+#include "mainHeader.h"
 
 class ScrabbleFunc
 {

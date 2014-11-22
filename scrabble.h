@@ -1,10 +1,8 @@
 #pragma once
-#include <QWidget>
 #include "scrabblefunc.h"
-#include <map>
-#include <QPushButton>
 #include "keyboard.h"
 #include "vocabulary.h"
+#include "mainHeader.h"
 
 namespace Ui {
 class Scrabble;

@@ -1,12 +1,6 @@
 #pragma once
-#include <vector>
-#include <map>
-#include <string>
-#include <iostream>
-#include <cassert>
-#include <ctime>
-#include <algorithm>
 #include "const.h"
+#include "mainHeader.h"
 
 using namespace std;
 
