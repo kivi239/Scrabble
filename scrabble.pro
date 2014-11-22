@@ -50,8 +50,8 @@ HEADERS  += scrabble.h \
     startmenu.h
 
 
-FORMS    += scrabble.ui \
-    startmenu.ui
+FORMS    += scrabble.ui
+FORMS    += startmenu.ui
 
 CONFIG += mobility
 MOBILITY = 
