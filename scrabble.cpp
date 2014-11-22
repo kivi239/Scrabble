@@ -35,6 +35,7 @@ void Scrabble::generate(string word)
       pos[button] = make_pair(i, j);
       ui->gridLayout->addWidget(button, i, j);
       connect(button, &QPushButton::clicked, this, &Scrabble::buttonPressed);
+      connect(button, &QPushButton::clicked, this, &Scrabble::buttonMarked);
       if (i == Size / 2)
       {
         QString str = "";
@@ -48,6 +49,8 @@ void Scrabble::generate(string word)
 
 void Scrabble::buttonPressed()
 {
+  if (enterWord)
+    return;
   QPushButton *button = dynamic_cast<QPushButton *>(sender());
   newCell = pos[button];
   if (scrabble->isIsolated(newCell.first, newCell.second))
@@ -66,8 +69,7 @@ void Scrabble::buttonPressed()
   }
   keyboard->makeEnable();
   keyboard->show();
-  for (map<QPushButton*, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
-    it->first->setEnabled(false);
+  makeUnable();
   button->setStyleSheet("background-color: rgb(175, 238, 238)");
 
 }
@@ -90,10 +92,19 @@ void Scrabble::letterPressed()
   str += letter;
   button->setText(str);
   keyboard->hide();
+
+  QPushButton *okButton = new QPushButton;
+  okButton->setText("Ok");
+  connect(okButton, &QPushButton::clicked, this, &Scrabble::okPressed);
+  ui->verticalLayout->addWidget(okButton);
+
   QPushButton *cancelButton = new QPushButton;
   cancelButton->setText("Cancel");
   ui->verticalLayout->addWidget(cancelButton);
   connect(cancelButton, &QPushButton::clicked, this, &Scrabble::cancelPressed);
+
+  enterWord = true;
+  makeEnable();
 }
 
 void Scrabble::copyFromField()
@@ -107,6 +118,18 @@ void Scrabble::copyFromField()
       str += letter;
     it->first->setText(str);
   }
+}
+
+void Scrabble::makeEnable()
+{
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+    it->first->setEnabled(true);
+}
+
+void Scrabble::makeUnable()
+{
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+    it->first->setEnabled(false);
 }
 
 void Scrabble::cancelPressed()
@@ -125,6 +148,28 @@ void Scrabble::cancelPressed()
   copyFromField();
   QPushButton *cancelButton = dynamic_cast<QPushButton *>(sender());
   delete cancelButton;
-  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
-    it->first->setEnabled(true);
+  makeEnable();
+  enterWord = false;
+}
+
+void Scrabble::buttonMarked()
+{
+  if (!enterWord)
+    return;
+  QPushButton *button = dynamic_cast<QPushButton *>(sender());
+  char letter = scrabble->getCell(pos[button].first, pos[button].second);
+  if (letter == '\0' || letter == '!')
+    return;
+  if (word.size() > 0 && !scrabble->areNeigbors(word.back().first, word.back().second, pos[button].first, pos[button].second))
+    return;
+  for (int i = 0; i < (int)word.size(); i++)
+    if (word[i] == pos[button])
+      return;
+  word.push_back(pos[button]);
+  button->setEnabled(false);
+}
+
+void Scrabble::okPressed()
+{
+
 }

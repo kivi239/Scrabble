@@ -3,6 +3,7 @@
 #include "keyboard.h"
 #include "vocabulary.h"
 #include "mainHeader.h"
+#include <vector>
 
 namespace Ui {
 class Scrabble;
@@ -15,15 +16,20 @@ class Scrabble : public QWidget
 public:
   explicit Scrabble(int _countOfGamers, QWidget *parent = 0);
   ~Scrabble();
-  void generate(string word);
-  void copyFromField();
 
 public slots:
   void buttonPressed();
   void letterPressed();
   void cancelPressed();
+  void buttonMarked();
+  void okPressed();
 
 private:
+  void generate(string word);
+  void copyFromField();
+  void makeEnable();
+  void makeUnable();
+
   Ui::Scrabble *ui;
   ScrabbleFunc *scrabble;
   std::map<QPushButton *, std::pair<int, int> > pos;
@@ -31,5 +37,6 @@ private:
   Vocabulary *vocabulary;
   std::pair<int, int> newCell;
   bool enterWord;
+  vector<pair<int, int> > word;
 };
 

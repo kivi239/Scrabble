@@ -11,6 +11,7 @@ public:
   char getCell(int x, int y);
   char getOldCell(int x, int y);
   bool isIsolated(int x, int y);
+  bool areNeigbors(int x1, int y1, int x2, int y2);
   void updateField();
   void cancelFieldChange();
 
