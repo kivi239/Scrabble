@@ -1,8 +1,8 @@
 #include "user.h"
 
-User::User(string name, int lost, int win, string lastGame, int lastUserScore, int lastBotScore)
+User::User(string _name, int lost, int win, string lastGame, int lastUserScore, int lastBotScore)
 {
-    name = name;
+    name = _name;
     lostMatches = lost;
     wonMathches = win;
     lastCurrentBotScore = lastBotScore;
