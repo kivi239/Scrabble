@@ -9,8 +9,8 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   ui(new Ui::Scrabble),
   scrabble(new ScrabbleFunc(_countOfGamers)),
   keyboard(nullptr),
-  newCell(make_pair(-1, -1)),
-  vocabulary(new Vocabulary)
+  vocabulary(new Vocabulary),
+  newCell(make_pair(-1, -1))
 {
   ui->setupUi(this);
   vocabulary->build();
@@ -47,21 +47,28 @@ void Scrabble::generate(string word)
 
 void Scrabble::buttonPressed()
 {
+  qDebug() << "here\n";
   QPushButton *button = dynamic_cast<QPushButton *>(sender());
   newCell = pos[button];
+  qDebug() << newCell.first << ' ' << newCell.second << '\n';
   char letter = scrabble->getOldCell(newCell.first, newCell.second);
   if (letter != '\0' || letter == '!')
   {
     newCell = make_pair(-1, -1);
     return;
   }
-  delete keyboard;
-  keyboard = new Keyboard();
-  connect(keyboard, &Keyboard::throwSignal, this, &Scrabble::letterPressed);
+  if (!keyboard)
+  {
+    keyboard = new Keyboard();
+    connect(keyboard, &Keyboard::throwSignal, this, &Scrabble::letterPressed);
+    ui->verticalLayout->addWidget(keyboard);
+  }
+  keyboard->makeEnable();
+  keyboard->show();
   for (map<QPushButton*, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
     it->first->setEnabled(false);
   button->setStyleSheet("background-color: rgb(175, 238, 238)");
-  ui->verticalLayout->addWidget(keyboard);
+
 }
 
 void Scrabble::letterPressed()
@@ -81,7 +88,8 @@ void Scrabble::letterPressed()
   QString str = "";
   str += letter;
   button->setText(str);
-  delete keyboard;
+  //delete keyboard;
+  keyboard->hide();
   QPushButton *cancelButton = new QPushButton;
   cancelButton->setText("Cancel");
   ui->verticalLayout->addWidget(cancelButton);
@@ -117,4 +125,6 @@ void Scrabble::cancelPressed()
   copyFromField();
   QPushButton *cancelButton = dynamic_cast<QPushButton *>(sender());
   delete cancelButton;
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+    it->first->setEnabled(true);
 }
