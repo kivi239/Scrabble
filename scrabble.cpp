@@ -19,6 +19,7 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   ui->setupUi(this);
   vocabulary->build();
   string word = vocabulary->getRandomStartWord();
+  vocabulary->add(word);
   generate(word);
 }
 
@@ -192,13 +193,6 @@ void Scrabble::okPressed()
   }
   word.clear();
   makeEnable();
-  if (!vocabulary->getTrie()->hasWord(newWord))
-  {
-    QMessageBox msgBox;
-    msgBox.setText("There is no such word");
-    msgBox.exec();
-    return;
-  }
   if (!ok)
   {
     QMessageBox msgBox;
@@ -206,6 +200,14 @@ void Scrabble::okPressed()
     msgBox.exec();
     return;
   }
+  //added new word to vocabulary
+  if (!vocabulary->add(newWord))
+  {
+    QMessageBox msgBox;
+    msgBox.setText("There is no such word or word was used before");
+    msgBox.exec();
+    return;
+  }    
   scrabble->updateField();
   delete okButton;
   delete cancelButton;
