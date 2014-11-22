@@ -189,7 +189,7 @@ void Scrabble::okPressed()
     ok |= (word[i] == newCell);
     newWord += scrabble->getCell(word[i].first, word[i].second);
   }
-  word.empty();
+  word.clear();
   makeEnable();
   if (!vocabulary->getTrie()->isHave(newWord))
   {
