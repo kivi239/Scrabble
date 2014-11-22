@@ -57,7 +57,7 @@ void Trie::add(string &word)
     trie[currentPosition].first = 1;
 }
 
-bool Trie::isHave(string &word)
+bool Trie::hasWord(string &word)
 {
     int currentPosition = 0;
     for (int i = 0; i < (int)word.size(); i++)
@@ -71,7 +71,7 @@ bool Trie::isHave(string &word)
 
 bool Trie::setWord(string &word)
 {
-    if (!isHave(word))
+    if (!hasWord(word))
         return false;
     int currentPosition = 0;
     for (int i = 0; i < (int)word.size(); i++)

@@ -10,7 +10,7 @@ public:
   Trie();
   ~Trie();
   void add(string &word);
-  bool isHave(string &word);
+  bool hasWord(string &word);
   bool setWord(string &word);
   string getRandomWord(int lengthOfWord);
   int nextVertex(int v, char ch);

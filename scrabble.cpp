@@ -192,7 +192,7 @@ void Scrabble::okPressed()
   }
   word.clear();
   makeEnable();
-  if (!vocabulary->getTrie()->isHave(newWord))
+  if (!vocabulary->getTrie()->hasWord(newWord))
   {
     QMessageBox msgBox;
     msgBox.setText("There is no such word");
