@@ -5,12 +5,13 @@
 class MainDataBase
 {
 public:
-    MainDataBase();
-    User *getUser(string name);
-    void addUser(QString name);
+    MainDataBase(QString name);
+    User getUser(string name);
+    ~MainDataBase();
 
 private:
-    void openDataBase(QSqlDatabase &db);
-    QSqlDatabase myDataBase;
+    void addUser(QString name);
+    void openDataBase(QString name);
+    QSqlDatabase db;
 };
 

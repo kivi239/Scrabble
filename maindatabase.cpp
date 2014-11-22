@@ -1,82 +1,83 @@
 #include "maindatabase.h"
 
-MainDataBase::MainDataBase()
+MainDataBase::MainDataBase(QString name)
 {
-
+    openDataBase(name);
 }
 
-User *MainDataBase::getUser(string name)
+User MainDataBase::getUser(string name)
 {
-    QSqlQuery query;
-    QString toQString ="";
-
-    for (int i = 0; i < (int)name.size(); ++i)
-        toQString += name[i];
-
-    QString strQuery = QString("SELECT * FROM SrabbleDataBase WHERE name ='%1'").arg(toQString);
-    bool result = query.exec(strQuery);
-    QSqlRecord record = query.record();
-
-    if (query.size() == 0)
+    if (db.isOpen())
     {
+        QSqlQuery query;
+        QString toQString ="";
+
+        for (int i = 0; i < (int)name.size(); ++i)
+            toQString += name[i];
+
+        QString strQuery = QString("SELECT * FROM ScrabbleDataBase WHERE name ='%1'").arg(toQString);
+        bool result = query.exec(strQuery);
+        QSqlRecord record = query.record();
+
+        assert(result);
+
+        while (query.next())
+        {
+            int loseCount = query.value(record.indexOf("loseCount")).toInt();
+            int winCount = query.value(record.indexOf("winCount")).toInt();
+            int usersCS = query.value(record.indexOf("usersCurrentScore")).toInt();
+            int botsCS = query.value(record.indexOf("botsCurrentScore")).toInt();
+            QString board = query.value(record.indexOf("currentBoard")).toString();
+            string sBoard = "";
+            for (int i = 0; i < (int)board.size(); ++i)
+                sBoard += board[i].toLatin1();
+            return User(name, loseCount, winCount, sBoard, usersCS, botsCS);
+        }
         addUser(toQString);
+        return getUser(name);
     }
+}
 
-    strQuery = QString("SELECT * FROM SrabbleDataBase WHERE name ='%1'").arg(toQString);
-    result = query.exec(strQuery);
-    record = query.record();
-
-    assert(result);
-    assert(query.size() != 0);
-
-    while (query.next())
-    {
-        int loseCount = query.value(record.indexOf("loseCount")).toInt();
-        int winCount = query.value(record.indexOf("winCount")).toInt();
-        int usersCS = query.value(record.indexOf("usersCurrentScore")).toInt();
-        int botsCS = query.value(record.indexOf("botsCurrentScore")).toInt();
-        QString board = query.value(record.indexOf("currentBoard")).toString();
-        string sBoard = "";
-        for (int i = 0; i < (int)board.size(); ++i)
-            sBoard += board[i].toLatin1();
-        return new User(name, loseCount, winCount, sBoard, usersCS, botsCS);
-    }
+MainDataBase::~MainDataBase()
+{
+    db.close();
 }
 
 void MainDataBase::addUser(QString name)
 {
-    if (myDataBase.isOpen())
+    if (db.isOpen())
     {
-        QSqlQuery query;
-        bool result = query.exec(QString("INSERT INTO SrcabbleDataBase values(NULL,'%1', '%2', '%3', '%4', '%5', '%6')").arg(name, 0, 0, "", 0, 0));
+        QSqlQuery query;     
+        bool result = query.exec(QString("INSERT INTO ScrabbleDataBase(name, loseCount, winCount, currentBoard"
+                                         ", usersCurrentScore, botsCurrentScore)"
+                                         "values('%1', '%2', '%3', '%4', '%5', '%6')").arg(name, 0, 0, "", 0, 0));
         assert(result);
     }
 }
 
-void MainDataBase::openDataBase(QSqlDatabase &db)
+void MainDataBase::openDataBase(QString name)
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("srabble.sqlite");
+    db.setDatabaseName(name);
     if (!db.isOpen())
-    {
+    {        
         if (!db.open())
         {
             assert(false);
         }
     }
 
-    if (!db.contains(QLatin1String("ScrabbleDataBase")))
-    {
+    if (!db.tables().contains("ScrabbleDataBase"))
+    {        
         QSqlQuery query;
-        QString strQuery = "CREATE TABLE ScrabbleDataBase ("
-                           "id integer PRIMARY KEY,"
-                           "name VARCHAR(100),"
+        QString strQuery = "CREATE table ScrabbleDataBase ("
+                           "name VARCHAR(100) PRIMARY KEY,"
                            "loseCount integer,"
                            "winCount integer,"
                             "currentBoard VARCHAR(100),"
                             "usersCurrentScore integer,"
                             "botsCurrentScore integer);";
         bool result = query.exec(strQuery);
-        assert(result);
+        assert(result);     
     }
 }

@@ -33,7 +33,9 @@ SOURCES += main.cpp\
     bot.cpp \
     bottest.cpp \
     startmenu.cpp \
-    user.cpp
+    user.cpp \
+    maindatabase.cpp \
+    dtabasetest.cpp
 
 
 HEADERS  += scrabble.h \
@@ -51,7 +53,9 @@ HEADERS  += scrabble.h \
     bottest.h \
     startmenu.h \
     user.h \
-    mainHeader.h
+    mainHeader.h \
+    maindatabase.h \
+    dtabasetest.h
 
 
 FORMS    += scrabble.ui
