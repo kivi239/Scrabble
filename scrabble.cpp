@@ -157,6 +157,7 @@ void Scrabble::cancelPressed()
   newCell = make_pair(-1, -1);
   scrabble->cancelFieldChange();
   copyFromField();
+  word.clear();
   delete cancelButton;
   delete okButton;
   makeEnable();
@@ -212,4 +213,5 @@ void Scrabble::okPressed()
   cancelButton = nullptr;
   enterWord = false;
   buttonFrom(newCell)->setStyleSheet("");
+  newCell = make_pair(-1, -1);
 }
