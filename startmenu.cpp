@@ -1,5 +1,6 @@
 #include "startmenu.h"
 #include "ui_startmenu.h"
+#include <QPainter>
 
 StartMenu::StartMenu(QWidget *parent) :
     QWidget(parent),
@@ -14,4 +15,11 @@ StartMenu::StartMenu(QWidget *parent) :
 StartMenu::~StartMenu()
 {
     delete ui;
+}
+
+void StartMenu::paintEvent(QPaintEvent *e)
+{
+    QPainter painter(this);
+    painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/background.jpg").scaled(size()));
+    QWidget::paintEvent(e);
 }

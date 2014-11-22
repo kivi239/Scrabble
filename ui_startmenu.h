@@ -39,15 +39,36 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         startGameButton = new QPushButton(StartMenu);
         startGameButton->setObjectName(QStringLiteral("startGameButton"));
-        startGameButton->setIconSize(QSize(40, 40));
+        startGameButton->setStyleSheet(QLatin1String("QPushButton {\n"
+"             color: black;\n"
+"             border-image: url(:/new/prefix1/background2.jpg)10 10 10 10;\n"
+"             border-top: 10px transparent;\n"
+"             border-bottom: 10px transparent;\n"
+"             border-right: 10px transparent;\n"
+"             border-left: 10px transparent;\n"
+"			 font: 75 10pt \"System\";\n"
+"            \n"
+"         }"));
+        startGameButton->setIconSize(QSize(100, 100));
+        startGameButton->setAutoRepeat(false);
         startGameButton->setAutoDefault(false);
         startGameButton->setDefault(false);
-        startGameButton->setFlat(false);
+        startGameButton->setFlat(true);
 
         gridLayout->addWidget(startGameButton, 3, 0, 1, 1);
 
         exitButton = new QPushButton(StartMenu);
         exitButton->setObjectName(QStringLiteral("exitButton"));
+        exitButton->setStyleSheet(QLatin1String("QPushButton {\n"
+"             color: black;\n"
+"             border-image:url(:/new/prefix1/background2.jpg) 10 100 10 100;\n"
+"             border-top: 10px transparent;\n"
+"             border-bottom: 10px transparent;\n"
+"             border-right: 100px transparent;\n"
+"             border-left: 100px transparent;\n"
+"			 font: 75 10pt \"System\";\n"
+"         }"));
+        exitButton->setFlat(true);
 
         gridLayout->addWidget(exitButton, 4, 0, 1, 1);
 

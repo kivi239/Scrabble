@@ -18,14 +18,29 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="3" column="0">
       <widget class="QPushButton" name="startGameButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+             color: black;
+             border-image: url(:/new/prefix1/background2.jpg)10 10 10 10;
+             border-top: 10px transparent;
+             border-bottom: 10px transparent;
+             border-right: 10px transparent;
+             border-left: 10px transparent;
+			 font: 75 10pt &quot;System&quot;;
+            
+         }</string>
+       </property>
        <property name="text">
         <string>Start Game</string>
        </property>
        <property name="iconSize">
         <size>
-         <width>40</width>
-         <height>40</height>
+         <width>100</width>
+         <height>100</height>
         </size>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -34,14 +49,28 @@
         <bool>false</bool>
        </property>
        <property name="flat">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
       <widget class="QPushButton" name="exitButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+             color: black;
+             border-image:url(:/new/prefix1/background2.jpg) 10 100 10 100;
+             border-top: 10px transparent;
+             border-bottom: 10px transparent;
+             border-right: 100px transparent;
+             border-left: 100px transparent;
+			 font: 75 10pt &quot;System&quot;;
+         }</string>
+       </property>
        <property name="text">
         <string>Exit</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
