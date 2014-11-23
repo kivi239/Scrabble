@@ -186,6 +186,8 @@ void Scrabble::cancelPressed()
   word.clear();
   delete cancelButton;
   delete okButton;
+  okButton = nullptr;
+  cancelButton = nullptr;
   makeEnable();
   enterWord = false;
   giveUp = new QPushButton;
