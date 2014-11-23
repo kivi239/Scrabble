@@ -87,6 +87,7 @@ void Scrabble::buttonPressed()
   keyboard->makeEnable();
   keyboard->show();
   delete giveUp;
+  giveUp = nullptr;
   makeUnable();
   button->setStyleSheet("background-color: rgb(175, 238, 238)");
 
