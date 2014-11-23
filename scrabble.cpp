@@ -189,6 +189,26 @@ void Scrabble::buttonMarked()
   button->setEnabled(false);
 }
 
+QString intToStr(int x)
+{
+  if (x == 0)
+    return "0";
+  QString ans = "";
+  while (x > 0)
+  {
+    ans += char(x % 10 + '0');
+    x /= 10;
+  }
+  for (int i = 0; i < (int)ans.size() / 2; i++)
+  {
+    QChar t = ans[i];
+    ans[i] = ans[ans.size() - i - 1];
+    ans[ans.size() - i - 1] = t;
+  }
+  return ans;
+  //return reverse(ans.begin(), ans.end());
+}
+
 void Scrabble::okPressed()
 {
   string newWord = "";
@@ -223,9 +243,9 @@ void Scrabble::okPressed()
   enterWord = false;
   buttonFrom(newCell)->setStyleSheet("");
   newCell = make_pair(-1, -1);
-  scrabble->updateScore(newWord.size());
+  scrabble->updateScore((int)newWord.size());
   int gamer = scrabble->getGamer();
   QLabel *label = scoreLabels[gamer];
-  label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));
+  label->setText("Gamer " + QString::number(gamer + 1) + " : " + intToStr(scrabble->getScore(gamer)));
   scrabble->changeGamer();
 }

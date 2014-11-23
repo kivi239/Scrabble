@@ -25,38 +25,38 @@ class Ui_Scrabble
 public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *layoutForScores;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout;
 
     void setupUi(QWidget *Scrabble)
     {
         if (Scrabble->objectName().isEmpty())
             Scrabble->setObjectName(QStringLiteral("Scrabble"));
-        Scrabble->resize(600, 759);
-        Scrabble->setMinimumSize(QSize(324, 576));
+        Scrabble->resize(1080, 1920);
+        Scrabble->setMinimumSize(QSize(1080, 1920));
         Scrabble->setMaximumSize(QSize(1080, 1920));
         verticalLayoutWidget = new QWidget(Scrabble);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(11, 11, 581, 71));
+        verticalLayoutWidget->setGeometry(QRect(11, 20, 1051, 331));
         layoutForScores = new QVBoxLayout(verticalLayoutWidget);
         layoutForScores->setSpacing(6);
         layoutForScores->setContentsMargins(11, 11, 11, 11);
         layoutForScores->setObjectName(QStringLiteral("layoutForScores"));
         layoutForScores->setContentsMargins(0, 0, 0, 0);
-        widget = new QWidget(Scrabble);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(11, 108, 571, 511));
-        gridLayout = new QGridLayout(widget);
+        layoutWidget = new QWidget(Scrabble);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 420, 1051, 1041));
+        gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        widget1 = new QWidget(Scrabble);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 640, 571, 101));
-        verticalLayout = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(Scrabble);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(20, 1540, 1041, 311));
+        verticalLayout = new QVBoxLayout(layoutWidget1);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
