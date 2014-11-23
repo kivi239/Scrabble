@@ -24,6 +24,7 @@ public slots:
   void cancelPressed();
   void buttonMarked();
   void okPressed();
+  void endGame();
 
 private:
   void generate(string word);
@@ -42,5 +43,6 @@ private:
   bool enterWord;
   vector<pair<int, int> > word;
   QPushButton *okButton, *cancelButton;
+  QPushButton *giveUp;
 };
 

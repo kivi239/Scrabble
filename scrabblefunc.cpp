@@ -49,6 +49,15 @@ int ScrabbleFunc::getGamer()
   return gamer;
 }
 
+bool ScrabbleFunc::endOfGame()
+{
+  for (int i = 0; i < Size; i++)
+    for (int j = 0; j < Size; j++)
+      if (getOldCell(i, j) == '\0')
+        return false;
+  return true;
+}
+
 char ScrabbleFunc::getOldCell(int x, int y)
 {
   return field.getCell(x, y);

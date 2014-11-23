@@ -19,6 +19,7 @@ public:
   int getScore(int numberOfGamer);
   int getCount();
   int getGamer();
+  bool endOfGame();
 
 private:
   int countOfGamers;

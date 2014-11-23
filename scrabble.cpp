@@ -14,7 +14,8 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   newCell(make_pair(-1, -1)),
   enterWord(false),
   okButton(nullptr),
-  cancelButton(nullptr)
+  cancelButton(nullptr),
+  giveUp(nullptr)
 {
   ui->setupUi(this);
   for (int i = 0; i < scrabble->getCount(); i++)
@@ -56,6 +57,11 @@ void Scrabble::generate(string word)
       }
     }
   scrabble->updateField();
+  giveUp = new QPushButton;
+  giveUp->setText("Give up!");
+  ui->verticalLayout->addWidget(giveUp);
+  connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
+  giveUp->show();
 }
 
 void Scrabble::buttonPressed()
@@ -80,6 +86,7 @@ void Scrabble::buttonPressed()
   }
   keyboard->makeEnable();
   keyboard->show();
+  delete giveUp;
   makeUnable();
   button->setStyleSheet("background-color: rgb(175, 238, 238)");
 
@@ -143,6 +150,16 @@ void Scrabble::makeUnable()
     it->first->setEnabled(false);
 }
 
+void Scrabble::endGame()
+{
+  QString msg = "Game is over! Scores:\n";
+  for (int i = 0; i < scrabble->getCount(); i++)
+    msg += "Gamer " + QString::number(i + 1) + " : " + QString::number(scrabble->getScore(i)) + "\n";
+  int ok = QMessageBox::information(this, "Game over", msg);
+  if (ok == QMessageBox::Ok)
+    qApp->quit();
+}
+
 QPushButton *Scrabble::buttonFrom(pair<int, int> coord)
 {
   for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
@@ -170,6 +187,10 @@ void Scrabble::cancelPressed()
   delete okButton;
   makeEnable();
   enterWord = false;
+  giveUp = new QPushButton;
+  giveUp->setText("Give up!");
+  connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
+  ui->verticalLayout->addWidget(giveUp);
 }
 
 void Scrabble::buttonMarked()
@@ -187,26 +208,6 @@ void Scrabble::buttonMarked()
       return;
   word.push_back(pos[button]);
   button->setEnabled(false);
-}
-
-QString intToStr(int x)
-{
-  if (x == 0)
-    return "0";
-  QString ans = "";
-  while (x > 0)
-  {
-    ans += char(x % 10 + '0');
-    x /= 10;
-  }
-  for (int i = 0; i < (int)ans.size() / 2; i++)
-  {
-    QChar t = ans[i];
-    ans[i] = ans[ans.size() - i - 1];
-    ans[ans.size() - i - 1] = t;
-  }
-  return ans;
-  //return reverse(ans.begin(), ans.end());
 }
 
 void Scrabble::okPressed()
@@ -246,6 +247,12 @@ void Scrabble::okPressed()
   scrabble->updateScore((int)newWord.size());
   int gamer = scrabble->getGamer();
   QLabel *label = scoreLabels[gamer];
-  label->setText("Gamer " + QString::number(gamer + 1) + " : " + intToStr(scrabble->getScore(gamer)));
+  label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));
   scrabble->changeGamer();
+  if (scrabble->endOfGame())
+    endGame();
+  giveUp = new QPushButton;
+  giveUp->setText("Give up!");
+  connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
+  ui->verticalLayout->addWidget(giveUp);
 }
