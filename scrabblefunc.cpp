@@ -23,9 +23,37 @@ void ScrabbleFunc::cancelFieldChange()
   newField = field;
 }
 
+void ScrabbleFunc::updateScore(int score)
+{
+  scores[gamer] += score;
+}
+
+int ScrabbleFunc::getScore(int numberOfGamer)
+{
+  if (numberOfGamer >= 0 && numberOfGamer < countOfGamers)
+    return scores[numberOfGamer];
+  return 0;
+}
+
+int ScrabbleFunc::getCount()
+{
+  return countOfGamers;
+}
+
+int ScrabbleFunc::getGamer()
+{
+  return gamer;
+}
+
 char ScrabbleFunc::getOldCell(int x, int y)
 {
   return field.getCell(x, y);
+}
+
+void ScrabbleFunc::changeGamer()
+{
+  gamer++;
+  gamer %= countOfGamers;
 }
 
 bool ScrabbleFunc::isIsolated(int x, int y)

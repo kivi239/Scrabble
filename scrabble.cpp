@@ -17,6 +17,13 @@ Scrabble::Scrabble(int _countOfGamers, QWidget *parent) :
   cancelButton(nullptr)
 {
   ui->setupUi(this);
+  for (int i = 0; i < scrabble->getCount(); i++)
+  {
+    QLabel *label = new QLabel;
+    label->setText("Gamer " + QString::number(i + 1) + ": 0");
+    ui->layoutForScores->addWidget(label, i);
+    scoreLabels.push_back(label);
+  }
   vocabulary->build();
   string word = vocabulary->getRandomStartWord();
   vocabulary->add(word);
@@ -216,4 +223,9 @@ void Scrabble::okPressed()
   enterWord = false;
   buttonFrom(newCell)->setStyleSheet("");
   newCell = make_pair(-1, -1);
+  scrabble->updateScore(newWord.size());
+  int gamer = scrabble->getGamer();
+  QLabel *label = scoreLabels[gamer];
+  label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));
+  scrabble->changeGamer();
 }

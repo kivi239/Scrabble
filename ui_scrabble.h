@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'scrabble.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.2.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -23,33 +23,44 @@ QT_BEGIN_NAMESPACE
 class Ui_Scrabble
 {
 public:
-    QGridLayout *gridLayout_2;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *layoutForScores;
+    QWidget *widget;
     QGridLayout *gridLayout;
+    QWidget *widget1;
     QVBoxLayout *verticalLayout;
 
     void setupUi(QWidget *Scrabble)
     {
         if (Scrabble->objectName().isEmpty())
             Scrabble->setObjectName(QStringLiteral("Scrabble"));
-        Scrabble->resize(600, 576);
+        Scrabble->resize(600, 759);
         Scrabble->setMinimumSize(QSize(324, 576));
         Scrabble->setMaximumSize(QSize(1080, 1920));
-        gridLayout_2 = new QGridLayout(Scrabble);
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setContentsMargins(11, 11, 11, 11);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        gridLayout = new QGridLayout();
+        verticalLayoutWidget = new QWidget(Scrabble);
+        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(11, 11, 581, 71));
+        layoutForScores = new QVBoxLayout(verticalLayoutWidget);
+        layoutForScores->setSpacing(6);
+        layoutForScores->setContentsMargins(11, 11, 11, 11);
+        layoutForScores->setObjectName(QStringLiteral("layoutForScores"));
+        layoutForScores->setContentsMargins(0, 0, 0, 0);
+        widget = new QWidget(Scrabble);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(11, 108, 571, 511));
+        gridLayout = new QGridLayout(widget);
         gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-
-        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
-
-        verticalLayout = new QVBoxLayout();
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        widget1 = new QWidget(Scrabble);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        widget1->setGeometry(QRect(10, 640, 571, 101));
+        verticalLayout = new QVBoxLayout(widget1);
         verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-
-        gridLayout_2->addLayout(verticalLayout, 1, 0, 1, 1);
-
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
 
         retranslateUi(Scrabble);
 

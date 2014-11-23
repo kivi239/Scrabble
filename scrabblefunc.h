@@ -14,6 +14,11 @@ public:
   bool areNeigbors(int x1, int y1, int x2, int y2);
   void updateField();
   void cancelFieldChange();
+  void changeGamer();
+  void updateScore(int score);
+  int getScore(int numberOfGamer);
+  int getCount();
+  int getGamer();
 
 private:
   int countOfGamers;

@@ -4,6 +4,7 @@
 #include "vocabulary.h"
 #include "mainHeader.h"
 #include <vector>
+#include <QLabel>
 
 namespace Ui {
 class Scrabble;
@@ -29,11 +30,12 @@ private:
   void copyFromField();
   void makeEnable();
   void makeUnable();
-  QPushButton *buttonFrom(pair<int, int> coord);
 
+  QPushButton *buttonFrom(pair<int, int> coord);
   Ui::Scrabble *ui;
   ScrabbleFunc *scrabble;
   std::map<QPushButton *, std::pair<int, int> > pos;
+  vector<QLabel *> scoreLabels;
   Keyboard *keyboard;
   Vocabulary *vocabulary;
   std::pair<int, int> newCell;
