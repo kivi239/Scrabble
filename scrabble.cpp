@@ -9,6 +9,7 @@ Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
   QWidget(parent),
   ui(new Ui::Scrabble),
   scrabble(new ScrabbleFunc(_countOfGamers)),
+  botWord(nullptr),
   keyboard(nullptr),
   vocabulary(new Vocabulary),
   newCell(make_pair(-1, -1)),
@@ -33,6 +34,9 @@ Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
   if (botFl)
   {
       bot = new Bot();
+      botWord = new QLabel();
+      ui->layoutForScores->addWidget(botWord);
+      botWord->hide();
   }
   else
         bot = nullptr;
@@ -95,9 +99,11 @@ void Scrabble::buttonPressed()
   keyboard->makeEnable();
   keyboard->show();
   delete giveUp;
+  giveUp = nullptr;
+  if (botFlag)
+    botWord->hide();
   makeUnable();
   button->setStyleSheet("background-color: rgb(175, 238, 238)");
-
 }
 
 void Scrabble::letterPressed()
@@ -160,24 +166,29 @@ void Scrabble::makeUnable()
 
 void Scrabble::botTurn()
 {
-    vector <Cell> result = bot->nextTurn(3, scrabble->getField(), vocabulary);
-    QString qWord = "";
-    string sWord = "";
-    for (int i = 0; i < (int)result.size(); ++i)
-    {
-        qWord = qWord + result[i].getCh();
-        sWord += result[i].getCh();
-    }
-//    qDebug() << qWord;
-    scrabble->updateScore(result.size());
-    for (int i = 0; i < (int)result.size(); ++i)
-    {
-        scrabble->setCell(result[i].getX(), result[i].getY(), result[i].getCh());
-        QPushButton *button = buttonFrom(make_pair(result[i].getX(), result[i].getY()));
-        button->setText(QString(result[i].getCh()));
-    }
-    scrabble->updateField();
-    vocabulary->add(sWord);
+  vector <Cell> result = bot->nextTurn(3, scrabble->getField(), vocabulary);
+  QString qWord = "";
+  string sWord = "";
+  for (int i = 0; i < (int)result.size(); ++i)
+  {
+    qWord = qWord + result[i].getCh();
+    sWord += result[i].getCh();
+  }
+//qDebug() << qWord;
+  scrabble->updateScore(result.size());
+  for (int i = 0; i < (int)result.size(); ++i)
+  {
+    scrabble->setCell(result[i].getX(), result[i].getY(), result[i].getCh());
+    QPushButton *button = buttonFrom(make_pair(result[i].getX(), result[i].getY()));
+    button->setText(QString(result[i].getCh()));
+  }
+  scrabble->updateField();
+  vocabulary->add(sWord);
+  if (botFlag)
+  {
+    botWord->setText("Bot word: " + qWord);
+    botWord->show();
+  }
 }
 
 void Scrabble::endGame()

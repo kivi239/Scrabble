@@ -27,6 +27,7 @@ private slots:
     void singleGame();
     void endOfAndroidSessison();
     void endOfSimpleSession();
+    void forceExit();
 
 private:
   Ui::StartMenu *ui;

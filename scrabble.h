@@ -42,6 +42,7 @@ private:
   ScrabbleFunc *scrabble;
   std::map<QPushButton *, std::pair<int, int> > pos;
   vector<QLabel *> scoreLabels;
+  QLabel *botWord;
   Keyboard *keyboard;
   Vocabulary *vocabulary;
   std::pair<int, int> newCell;
