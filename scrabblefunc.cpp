@@ -7,6 +7,11 @@ ScrabbleFunc::ScrabbleFunc(int count) : countOfGamers(count), gamer(0), field(),
     scores[i] = 0;
 }
 
+ScrabbleFunc::~ScrabbleFunc()
+{
+  delete scores;
+}
+
 void ScrabbleFunc::setCell(int x, int y, char c)
 {
   newField.setCell(x, y, c);

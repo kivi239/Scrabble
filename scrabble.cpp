@@ -47,6 +47,12 @@ Scrabble::~Scrabble()
   delete vocabulary;
   delete ui;
   delete bot;
+  delete keyboard;
+  delete okButton;
+  delete cancelButton;
+  delete botWord;
+  delete giveUp;
+  delete scrabble;
 }
 
 void Scrabble::generate(string word)
