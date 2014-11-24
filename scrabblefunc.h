@@ -20,6 +20,7 @@ public:
   int getCount();
   int getGamer();
   bool endOfGame();
+  Field *getField();
 
 private:
   int countOfGamers;

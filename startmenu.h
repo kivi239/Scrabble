@@ -1,5 +1,6 @@
 #pragma once
 #include "mainHeader.h"
+#include "scrabble.h"
 
 namespace Ui {
 class StartMenu;
@@ -18,10 +19,18 @@ void paintEvent(QPaintEvent *);
 
 
 signals:
-  void startGame();
+  void startSimpleGame();
+  void startAgainstAndroid();
+
+private slots:
+    void againstAndroid();
+    void singleGame();
+    void endOfAndroidSessison();
+    void endOfSimpleSession();
 
 private:
   Ui::StartMenu *ui;
+  Scrabble *game;
 };
 
 

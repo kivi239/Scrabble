@@ -5,6 +5,7 @@
 #include "mainHeader.h"
 #include <vector>
 #include <QLabel>
+#include "bot.h"
 
 namespace Ui {
 class Scrabble;
@@ -15,8 +16,11 @@ class Scrabble : public QWidget
   Q_OBJECT
 
 public:
-  explicit Scrabble(int _countOfGamers, QWidget *parent = 0);
+  explicit Scrabble(int _countOfGamers, bool botFl = false, QWidget *parent = 0);
   ~Scrabble();
+
+signals:
+    void endOfGame();
 
 public slots:
   void buttonPressed();
@@ -31,6 +35,7 @@ private:
   void copyFromField();
   void makeEnable();
   void makeUnable();
+  void botTurn();
 
   QPushButton *buttonFrom(pair<int, int> coord);
   Ui::Scrabble *ui;
@@ -44,5 +49,7 @@ private:
   vector<pair<int, int> > word;
   QPushButton *okButton, *cancelButton;
   QPushButton *giveUp;
+  bool botFlag;
+  Bot *bot;
 };
 

@@ -27,6 +27,7 @@ public:
     QGridLayout *gridLayout;
     QPushButton *startGameButton;
     QPushButton *exitButton;
+    QPushButton *againstAndroid;
 
     void setupUi(QWidget *StartMenu)
     {
@@ -39,15 +40,14 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         startGameButton = new QPushButton(StartMenu);
         startGameButton->setObjectName(QStringLiteral("startGameButton"));
-        startGameButton->setStyleSheet(QLatin1String("QPushButton {\n"
+        startGameButton->setStyleSheet(QLatin1String("QPushButton {		    \n"
 "             color: black;\n"
-"             border-image: url(:/new/prefix1/background2.jpg)10 10 10 10;\n"
-"             border-top: 10px transparent;\n"
-"             border-bottom: 10px transparent;\n"
-"             border-right: 10px transparent;\n"
-"             border-left: 10px transparent;\n"
-"			 font: 75 10pt \"System\";\n"
-"            \n"
+"             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;\n"
+"             border-top: 20px transparent;\n"
+"             border-bottom: 20px transparent;\n"
+"             border-right: 100px transparent;\n"
+"             border-left: 100px transparent;\n"
+"			 font: 75 16pt \"System\";\n"
 "         }"));
         startGameButton->setIconSize(QSize(100, 100));
         startGameButton->setAutoRepeat(false);
@@ -59,18 +59,33 @@ public:
 
         exitButton = new QPushButton(StartMenu);
         exitButton->setObjectName(QStringLiteral("exitButton"));
-        exitButton->setStyleSheet(QLatin1String("QPushButton {\n"
+        exitButton->setStyleSheet(QLatin1String("QPushButton {		    \n"
 "             color: black;\n"
-"             border-image:url(:/new/prefix1/background2.jpg) 10 100 10 100;\n"
-"             border-top: 10px transparent;\n"
-"             border-bottom: 10px transparent;\n"
+"             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;\n"
+"             border-top: 20px transparent;\n"
+"             border-bottom: 20px transparent;\n"
 "             border-right: 100px transparent;\n"
 "             border-left: 100px transparent;\n"
-"			 font: 75 10pt \"System\";\n"
+"			 font: 75 16pt \"System\";\n"
 "         }"));
         exitButton->setFlat(true);
 
-        gridLayout->addWidget(exitButton, 4, 0, 1, 1);
+        gridLayout->addWidget(exitButton, 5, 0, 1, 1);
+
+        againstAndroid = new QPushButton(StartMenu);
+        againstAndroid->setObjectName(QStringLiteral("againstAndroid"));
+        againstAndroid->setStyleSheet(QLatin1String("QPushButton {		    \n"
+"             color: black;\n"
+"             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;\n"
+"             border-top: 20px transparent;\n"
+"             border-bottom: 20px transparent;\n"
+"             border-right: 100px transparent;\n"
+"             border-left: 100px transparent;\n"
+"			 font: 75 16pt \"System\";\n"
+"         }"));
+        againstAndroid->setFlat(true);
+
+        gridLayout->addWidget(againstAndroid, 4, 0, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
@@ -84,8 +99,9 @@ public:
     void retranslateUi(QWidget *StartMenu)
     {
         StartMenu->setWindowTitle(QApplication::translate("StartMenu", "Form", 0));
-        startGameButton->setText(QApplication::translate("StartMenu", "Start Game", 0));
+        startGameButton->setText(QApplication::translate("StartMenu", "Start Single Game", 0));
         exitButton->setText(QApplication::translate("StartMenu", "Exit", 0));
+        againstAndroid->setText(QApplication::translate("StartMenu", "Play Against Android", 0));
     } // retranslateUi
 
 };

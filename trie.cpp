@@ -26,7 +26,7 @@ bool Trie::isGood(string &word)
 {
     for (int i = 0; i < (int)word.size(); i++)
     {
-        if ('a' <= word[i] && word[i] <= 'z')
+        if (('a' <= word[i] && word[i] <= 'z') || (word[i] == 'X'))
             continue;
         return false;
     }

@@ -19,19 +19,18 @@
      <item row="3" column="0">
       <widget class="QPushButton" name="startGameButton">
        <property name="styleSheet">
-        <string notr="true">QPushButton {
+        <string notr="true">QPushButton {		    
              color: black;
-             border-image: url(:/new/prefix1/background2.jpg)10 10 10 10;
-             border-top: 10px transparent;
-             border-bottom: 10px transparent;
-             border-right: 10px transparent;
-             border-left: 10px transparent;
-			 font: 75 10pt &quot;System&quot;;
-            
+             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;
+             border-top: 20px transparent;
+             border-bottom: 20px transparent;
+             border-right: 100px transparent;
+             border-left: 100px transparent;
+			 font: 75 16pt &quot;System&quot;;
          }</string>
        </property>
        <property name="text">
-        <string>Start Game</string>
+        <string>Start Single Game</string>
        </property>
        <property name="iconSize">
         <size>
@@ -53,21 +52,42 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <widget class="QPushButton" name="exitButton">
        <property name="styleSheet">
-        <string notr="true">QPushButton {
+        <string notr="true">QPushButton {		    
              color: black;
-             border-image:url(:/new/prefix1/background2.jpg) 10 100 10 100;
-             border-top: 10px transparent;
-             border-bottom: 10px transparent;
+             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;
+             border-top: 20px transparent;
+             border-bottom: 20px transparent;
              border-right: 100px transparent;
              border-left: 100px transparent;
-			 font: 75 10pt &quot;System&quot;;
+			 font: 75 16pt &quot;System&quot;;
          }</string>
        </property>
        <property name="text">
         <string>Exit</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="againstAndroid">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {		    
+             color: black;
+             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;
+             border-top: 20px transparent;
+             border-bottom: 20px transparent;
+             border-right: 100px transparent;
+             border-left: 100px transparent;
+			 font: 75 16pt &quot;System&quot;;
+         }</string>
+       </property>
+       <property name="text">
+        <string>Play Against Android</string>
        </property>
        <property name="flat">
         <bool>true</bool>

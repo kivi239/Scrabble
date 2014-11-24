@@ -58,6 +58,11 @@ bool ScrabbleFunc::endOfGame()
   return true;
 }
 
+Field *ScrabbleFunc::getField()
+{
+    return &field;
+}
+
 char ScrabbleFunc::getOldCell(int x, int y)
 {
   return field.getCell(x, y);
