@@ -10,7 +10,7 @@ StartMenu::StartMenu(QWidget *parent) :
   ui->setupUi(this);
   connect(ui->startGameButton, SIGNAL(clicked()), SIGNAL(startSimpleGame()));
   connect(ui->startGameButton, SIGNAL(clicked()), SLOT(hide()));
-  connect(ui->exitButton, SIGNAL(clicked()), SLOT(close()));
+  connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(forceExit()));
   connect(ui->againstAndroid, SIGNAL(clicked()), SIGNAL(startAgainstAndroid()));
   connect(ui->againstAndroid, SIGNAL(clicked()), SLOT(hide()));
   connect(this, SIGNAL(startAgainstAndroid()), this, SLOT(againstAndroid()));
@@ -50,6 +50,7 @@ void StartMenu::endOfAndroidSessison()
 {
   game->hide();
   delete game;
+  game = nullptr;
   this->show();
 }
 
@@ -57,11 +58,13 @@ void StartMenu::endOfSimpleSession()
 {
   game->hide();
   delete game;
+  game = nullptr;
   this->show();
 }
 
 void StartMenu::forceExit()
 {
-  qDebug() << "exit!";
-  qApp->exit();
+  delete game;
+  delete ui;
+  QApplication::exit();
 }
