@@ -45,7 +45,11 @@ Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
 Scrabble::~Scrabble()
 {
   delete vocabulary;
-  delete ui;
+  for (map<QPushButton *, pair<int, int> >::iterator it = pos.begin(); it != pos.end(); it++)
+    delete it->first;
+  for (int i = 0; i < (int)scoreLabels.size(); i++)
+    delete scoreLabels[i];
+
   delete bot;
   delete keyboard;
   delete okButton;
@@ -53,6 +57,7 @@ Scrabble::~Scrabble()
   delete botWord;
   delete giveUp;
   delete scrabble;
+  delete ui;
 }
 
 void Scrabble::generate(string word)
@@ -75,11 +80,24 @@ void Scrabble::generate(string word)
       }
     }
   scrabble->updateField();
+
   giveUp = new QPushButton;
   giveUp->setText("Give up!");
   ui->verticalLayout->addWidget(giveUp);
   connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
   giveUp->show();
+
+  okButton = new QPushButton;
+  okButton->setText("Ok");
+  connect(okButton, &QPushButton::clicked, this, &Scrabble::okPressed);
+  ui->verticalLayout->addWidget(okButton);
+  okButton->hide();
+
+  cancelButton = new QPushButton;
+  cancelButton->setText("Cancel");
+  ui->verticalLayout->addWidget(cancelButton);
+  connect(cancelButton, &QPushButton::clicked, this, &Scrabble::cancelPressed);
+  cancelButton->hide();
 }
 
 void Scrabble::buttonPressed()
@@ -104,8 +122,7 @@ void Scrabble::buttonPressed()
   }
   keyboard->makeEnable();
   keyboard->show();
-  delete giveUp;
-  giveUp = nullptr;
+  giveUp->hide();
   if (botFlag)
     botWord->hide();
   makeUnable();
@@ -131,15 +148,8 @@ void Scrabble::letterPressed()
   button->setText(str);
   keyboard->hide();
 
-  okButton = new QPushButton;
-  okButton->setText("Ok");
-  connect(okButton, &QPushButton::clicked, this, &Scrabble::okPressed);
-  ui->verticalLayout->addWidget(okButton);
-
-  cancelButton = new QPushButton;
-  cancelButton->setText("Cancel");
-  ui->verticalLayout->addWidget(cancelButton);
-  connect(cancelButton, &QPushButton::clicked, this, &Scrabble::cancelPressed);
+  okButton->show();
+  cancelButton->show();
 
   enterWord = true;
   makeEnable();
@@ -195,6 +205,8 @@ void Scrabble::botTurn()
     botWord->setText("Bot word: " + qWord);
     botWord->show();
   }
+  //if (scrabble->endOfGame())
+    //endGame();
 }
 
 void Scrabble::endGame()
@@ -230,16 +242,11 @@ void Scrabble::cancelPressed()
   scrabble->cancelFieldChange();
   copyFromField();
   word.clear();
-  delete cancelButton;
-  delete okButton;
-  cancelButton = nullptr;
-  okButton = nullptr;
+  cancelButton->hide();
+  okButton->hide();
   makeEnable();
   enterWord = false;
-  giveUp = new QPushButton;
-  giveUp->setText("Give up!");
-  connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
-  ui->verticalLayout->addWidget(giveUp);
+  giveUp->show();
 }
 
 void Scrabble::buttonMarked()
@@ -286,10 +293,8 @@ void Scrabble::okPressed()
     return;
   }    
   scrabble->updateField();
-  delete okButton;
-  delete cancelButton;
-  okButton = nullptr;
-  cancelButton = nullptr;
+  okButton->hide();
+  cancelButton->hide();
   enterWord = false;
   buttonFrom(newCell)->setStyleSheet("");
   newCell = make_pair(-1, -1);
@@ -298,20 +303,30 @@ void Scrabble::okPressed()
   QLabel *label = scoreLabels[gamer];
   label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));  
   if (scrabble->endOfGame())
+  {
     endGame();
+    return;
+  }
   if (botFlag)
   {
-      scrabble->changeGamer();
-      int gamer = scrabble->getGamer();
-      botTurn();
-      QLabel *label = scoreLabels[gamer];
-      label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));
-      if (scrabble->endOfGame())
-        endGame();
+    scrabble->changeGamer();
+    int gamer = scrabble->getGamer();
+    botTurn();
+    if (scrabble->endOfGame())
+    {
+      endGame();
+      return;
+    }
+    QLabel *label = scoreLabels[gamer];
+    label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));
+    if (scrabble->endOfGame())
+    {
+      endGame();
+      return;
+    }
   }
   scrabble->changeGamer();
-  giveUp = new QPushButton;
-  giveUp->setText("Give up!");
-  connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
-  ui->verticalLayout->addWidget(giveUp);
+  //giveUp = new QPushButton;
+  //giveUp->setText("Give up!");
+  giveUp->show();
 }

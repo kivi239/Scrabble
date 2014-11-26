@@ -82,7 +82,6 @@ bool Trie::setWord(string &word)
     return true;
 }
 
-
 string Trie::getRandomWord(int lengthOfWord)
 {
     vector <string> result;

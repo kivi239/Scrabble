@@ -66,5 +66,7 @@ void StartMenu::forceExit()
 {
   delete game;
   delete ui;
+  game = nullptr;
+  ui = nullptr;
   QApplication::exit();
 }

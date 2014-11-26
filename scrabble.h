@@ -20,7 +20,7 @@ public:
   ~Scrabble();
 
 signals:
-    void endOfGame();
+  void endOfGame();
 
 public slots:
   void buttonPressed();

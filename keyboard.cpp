@@ -9,6 +9,14 @@ Keyboard::Keyboard(QWidget *parent) :
   generate();
 }
 
+Keyboard::~Keyboard()
+{
+  for (int i = 0; i < 3; i++)
+    delete layouts[i];
+  delete layouts;
+  delete layout;
+}
+
 void Keyboard::generate()
 {
   layouts = new QHBoxLayout *[3];
