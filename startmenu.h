@@ -30,6 +30,7 @@ private slots:
     void forceExit();
 
 private:
+  bool isPlayingNow;
   Ui::StartMenu *ui;
   Scrabble *game;
 };

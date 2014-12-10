@@ -7,6 +7,7 @@ StartMenu::StartMenu(QWidget *parent) :
   ui(new Ui::StartMenu),
   game(nullptr)
 {
+  isPlayingNow = false;
   ui->setupUi(this);
   connect(ui->startGameButton, SIGNAL(clicked()), SIGNAL(startSimpleGame()));
   connect(ui->startGameButton, SIGNAL(clicked()), SLOT(hide()));
@@ -32,6 +33,9 @@ void StartMenu::paintEvent(QPaintEvent *e)
 
 void StartMenu::againstAndroid()
 {
+  if (isPlayingNow)
+      return;
+  isPlayingNow = true;
   game = new Scrabble(2, true);
   this->hide();
   connect(game, SIGNAL(endOfGame()), this, SLOT(endOfAndroidSessison()));
@@ -40,6 +44,9 @@ void StartMenu::againstAndroid()
 
 void StartMenu::singleGame()
 {
+  if (isPlayingNow)
+      return;
+  isPlayingNow = true;
   game = new Scrabble(2, false);
   this->hide();
   connect(game, SIGNAL(endOfGame()), this, SLOT(endOfSimpleSession()));
@@ -47,26 +54,26 @@ void StartMenu::singleGame()
 }
 
 void StartMenu::endOfAndroidSessison()
-{
+{  
   game->hide();
   delete game;
   game = nullptr;
   this->show();
+  isPlayingNow = false;
 }
 
 void StartMenu::endOfSimpleSession()
-{
+{  
   game->hide();
   delete game;
   game = nullptr;
   this->show();
+  isPlayingNow = false;
 }
 
 void StartMenu::forceExit()
 {
   delete game;
   delete ui;
-  game = nullptr;
-  ui = nullptr;
   QApplication::exit();
 }
