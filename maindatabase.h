@@ -1,3 +1,4 @@
+#pragma once
 #include "mainHeader.h"
 #include <QtSql>
 #include "user.h"
@@ -7,6 +8,7 @@ class MainDataBase
 public:
     MainDataBase(QString name);
     User getUser(string name);
+    vector<QString> getAllUsers();
     ~MainDataBase();
 
 private:
