@@ -12,8 +12,10 @@ class ChangeUsersForm : public QWidget
     Q_OBJECT
 
 public:
-    explicit ChangeUsersForm(vector <QString> &users, QWidget *parent = 0);
+    explicit ChangeUsersForm(QWidget *parent = 0);
     ~ChangeUsersForm();
+
+    void addUsers(vector <QString> &users);
 
 signals:
     void exitForm();
@@ -24,5 +26,6 @@ private slots:
 
 private:
     Ui::ChangeUsersForm *ui;
+    set<QString> myUsers;
 };
 
