@@ -1,3 +1,4 @@
+#pragma once
 #include "mainHeader.h"
 #include <QtSql>
 #include "user.h"

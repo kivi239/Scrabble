@@ -33,13 +33,13 @@ Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
   generate(word);
   if (botFl)
   {
-      bot = new Bot();
-      botWord = new QLabel();
-      ui->layoutForScores->addWidget(botWord);
-      botWord->hide();
+    bot = new Bot();
+    botWord = new QLabel();
+    ui->layoutForScores->addWidget(botWord);
+    botWord->hide();
   }
   else
-        bot = nullptr;
+    bot = nullptr;
 }
 
 Scrabble::~Scrabble()
@@ -190,7 +190,6 @@ void Scrabble::botTurn()
     qWord = qWord + result[i].getCh();
     sWord += result[i].getCh();
   }
-//qDebug() << qWord;
   scrabble->updateScore(result.size());
   for (int i = 0; i < (int)result.size(); ++i)
   {
@@ -205,8 +204,6 @@ void Scrabble::botTurn()
     botWord->setText("Bot word: " + qWord);
     botWord->show();
   }
-  //if (scrabble->endOfGame())
-    //endGame();
 }
 
 void Scrabble::endGame()
@@ -284,7 +281,6 @@ void Scrabble::okPressed()
     msgBox.exec();
     return;
   }
-  //added new word to vocabulary
   if (!vocabulary->add(newWord))
   {
     QMessageBox msgBox;
@@ -326,7 +322,5 @@ void Scrabble::okPressed()
     }
   }
   scrabble->changeGamer();
-  //giveUp = new QPushButton;
-  //giveUp->setText("Give up!");
   giveUp->show();
 }
