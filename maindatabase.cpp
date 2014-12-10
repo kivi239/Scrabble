@@ -5,20 +5,18 @@ MainDataBase::MainDataBase(QString name)
     openDataBase(name);
 }
 
-User MainDataBase::getUser(string name)
+User MainDataBase::getUser(QString name)
 {
     if (db.isOpen())
     {
         QSqlQuery query;
-        QString toQString ="";
 
-        for (int i = 0; i < (int)name.size(); ++i)
-            toQString += name[i];
 
-        QString strQuery = QString("SELECT * FROM ScrabbleDataBase WHERE name ='%1'").arg(toQString);
+        QString strQuery = QString("SELECT * FROM ScrabbleDataBase WHERE name ='%1'").arg(name);
         bool result = query.exec(strQuery);
         QSqlRecord record = query.record();
 
+        qDebug() << "getUser " << result;
         assert(result);
 
         while (query.next())
@@ -33,7 +31,7 @@ User MainDataBase::getUser(string name)
                 sBoard += board[i].toLatin1();
             return User(name, loseCount, winCount, sBoard, usersCS, botsCS);
         }
-        addUser(toQString);
+        addUser(name);
         return getUser(name);
     }
 }
@@ -49,6 +47,7 @@ vector<QString> MainDataBase::getAllUsers()
         bool result = query.exec(strQuery);
         QSqlRecord record = query.record();
 
+        qDebug() << result;
         assert(result);
 
         while (query.next())

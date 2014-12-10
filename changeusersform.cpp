@@ -11,9 +11,17 @@ ChangeUsersForm::ChangeUsersForm(vector <QString> &users, QWidget *parent) :
         ui->listWidget->addItem(users[i]);
     }
     connect(ui->exitButton, SIGNAL(clicked()), this, SIGNAL(exitForm()));
+    connect(ui->listWidget, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(pressedUser(QListWidgetItem*)));
+    qDebug() << "in";
 }
 
 ChangeUsersForm::~ChangeUsersForm()
 {
     delete ui;
+    qDebug() << "out";
+}
+
+void ChangeUsersForm::pressedUser(QListWidgetItem *x)
+{
+    //emit player(x->text());
 }

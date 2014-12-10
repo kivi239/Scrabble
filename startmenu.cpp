@@ -8,8 +8,15 @@ StartMenu::StartMenu(QWidget *parent) :
   game(nullptr),
   db(new MainDataBase("ProjectGame.sqlite"))
 {
+
   isPlayingNow = false;
   ui->setupUi(this);
+  playerName = "Guest";
+  vector <QString> allUsers = db->getAllUsers();
+  if (allUsers.size())
+      playerName = allUsers[0];
+  mainUser = db->getUser(playerName);
+
   connect(ui->startGameButton, SIGNAL(clicked()), SIGNAL(startSimpleGame()));
   connect(ui->startGameButton, SIGNAL(clicked()), SLOT(hide()));
   connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(forceExit()));
@@ -82,11 +89,12 @@ void StartMenu::forceExit()
 
 void StartMenu::showPLayers()
 {
-    db->getUser("anton");
-    db->getUser("toha");
+    //db->getUser("anton");
+    //db->getUser("toha");
     vector <QString> allUsers = db->getAllUsers();
     uList = new ChangeUsersForm(allUsers);
     connect(uList, SIGNAL(exitForm()), this, SLOT(closeUsersForm()));
+    connect(uList, SIGNAL(player(QString)), this, SLOT(changePlayer(QString)));
     this->hide();
     uList->show();
 }
@@ -97,3 +105,14 @@ void StartMenu::closeUsersForm()
     delete uList;
     uList = nullptr;
 }
+
+void StartMenu::changePlayer(QString x)
+{
+    qDebug() << "fullname " << mainUser.getFullName();
+    qDebug() << x << "\n";
+    mainUser = db->getUser(x);
+    qDebug() << "in bagdad are quite";
+    closeUsersForm();
+    qDebug() << "all\n";
+}
+
