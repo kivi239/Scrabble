@@ -38,6 +38,28 @@ User MainDataBase::getUser(string name)
     }
 }
 
+vector<QString> MainDataBase::getAllUsers()
+{
+    vector <QString> results;
+    results.clear();
+    if (db.isOpen())
+    {
+        QSqlQuery query;
+        QString strQuery = QString("SELECT * FROM ScrabbleDataBase");
+        bool result = query.exec(strQuery);
+        QSqlRecord record = query.record();
+
+        assert(result);
+
+        while (query.next())
+        {
+            QString name = query.value(record.indexOf("name")).toString();
+            results.push_back(name);
+        }
+    }
+    return results;
+}
+
 MainDataBase::~MainDataBase()
 {
     db.close();
