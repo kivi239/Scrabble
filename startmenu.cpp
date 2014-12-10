@@ -5,7 +5,8 @@
 StartMenu::StartMenu(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::StartMenu),
-  game(nullptr)
+  game(nullptr),
+  db(new MainDataBase("ProjectGame.sqlite"))
 {
   isPlayingNow = false;
   ui->setupUi(this);
@@ -16,6 +17,7 @@ StartMenu::StartMenu(QWidget *parent) :
   connect(ui->againstAndroid, SIGNAL(clicked()), SLOT(hide()));
   connect(this, SIGNAL(startAgainstAndroid()), this, SLOT(againstAndroid()));
   connect(this, SIGNAL(startSimpleGame()), this, SLOT(singleGame()));
+  connect(ui->changePlayer, SIGNAL(clicked()), this, SLOT(showPLayers()));
 }
 
 StartMenu::~StartMenu()
@@ -75,5 +77,23 @@ void StartMenu::forceExit()
 {
   delete game;
   delete ui;
-  QApplication::exit();
+    QApplication::exit();
+}
+
+void StartMenu::showPLayers()
+{
+    db->getUser("anton");
+    db->getUser("toha");
+    vector <QString> allUsers = db->getAllUsers();
+    uList = new ChangeUsersForm(allUsers);
+    connect(uList, SIGNAL(exitForm()), this, SLOT(closeUsersForm()));
+    this->hide();
+    uList->show();
+}
+
+void StartMenu::closeUsersForm()
+{
+    this->show();
+    delete uList;
+    uList = nullptr;
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "mainHeader.h"
 #include "scrabble.h"
+#include "maindatabase.h"
+#include "changeusersform.h"
 
 namespace Ui {
 class StartMenu;
@@ -28,11 +30,15 @@ private slots:
     void endOfAndroidSessison();
     void endOfSimpleSession();
     void forceExit();
+    void showPLayers();
+    void closeUsersForm();
 
 private:
   bool isPlayingNow;
   Ui::StartMenu *ui;
   Scrabble *game;
+  MainDataBase *db;
+  ChangeUsersForm *uList;
 };
 
 
