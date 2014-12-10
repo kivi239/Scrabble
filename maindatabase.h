@@ -7,7 +7,7 @@ class MainDataBase
 {
 public:
     MainDataBase(QString name);
-    User getUser(string name);
+    User getUser(QString name);
     vector<QString> getAllUsers();
     ~MainDataBase();
 

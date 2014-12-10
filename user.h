@@ -4,13 +4,14 @@
 class User
 {
 public:
-    User(string name, int lost, int win, string lastGame, int lastUserScore, int lastBotScore);
-    string getFullName();
+    User(){}
+    User(QString name, int lost, int win, string lastGame, int lastUserScore, int lastBotScore);
+    QString getFullName();
     int getPlayedGames();
     int getCurrentUsersScore();
 
 private:
-    string name;
+    QString name;
     int lostMatches;
     int wonMathches;
     string lastMatch;

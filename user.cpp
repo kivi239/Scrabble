@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User(string _name, int lost, int win, string lastGame, int lastUserScore, int lastBotScore)
+User::User(QString _name, int lost, int win, string lastGame, int lastUserScore, int lastBotScore)
 {
     name = _name;
     lostMatches = lost;
@@ -10,7 +10,7 @@ User::User(string _name, int lost, int win, string lastGame, int lastUserScore, 
     lastMatch = lastGame;
 }
 
-string User::getFullName()
+QString User::getFullName()
 {
     return name;
 }

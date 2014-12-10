@@ -32,13 +32,17 @@ private slots:
     void forceExit();
     void showPLayers();
     void closeUsersForm();
+    void changePlayer(QString);
 
 private:
+  string QStringToString(QString x);
   bool isPlayingNow;
   Ui::StartMenu *ui;
   Scrabble *game;
   MainDataBase *db;
   ChangeUsersForm *uList;
+  QString playerName;
+  User mainUser;
 };
 
 

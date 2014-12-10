@@ -16,6 +16,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,20 +26,53 @@ class Ui_StartMenu
 public:
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_3;
+    QSpacerItem *verticalSpacer_2;
+    QSpacerItem *verticalSpacer_5;
     QPushButton *exitButton;
     QPushButton *startGameButton;
-    QPushButton *againstAndroid;
     QPushButton *changePlayer;
+    QPushButton *againstAndroid;
+    QSpacerItem *verticalSpacer_4;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *horizontalSpacer_5;
+    QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_7;
+    QSpacerItem *horizontalSpacer_8;
 
     void setupUi(QWidget *StartMenu)
     {
         if (StartMenu->objectName().isEmpty())
             StartMenu->setObjectName(QStringLiteral("StartMenu"));
-        StartMenu->resize(473, 380);
+        StartMenu->resize(419, 500);
         gridLayout_2 = new QGridLayout(StartMenu);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 4, 0, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout->addItem(verticalSpacer, 9, 1, 1, 1);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout->addItem(verticalSpacer_3, 5, 1, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout->addItem(verticalSpacer_2, 7, 1, 1, 1);
+
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout->addItem(verticalSpacer_5, 11, 1, 1, 1);
+
         exitButton = new QPushButton(StartMenu);
         exitButton->setObjectName(QStringLiteral("exitButton"));
         exitButton->setStyleSheet(QLatin1String("QPushButton {		    \n"
@@ -52,7 +86,7 @@ public:
 "         }"));
         exitButton->setFlat(true);
 
-        gridLayout->addWidget(exitButton, 6, 0, 1, 1);
+        gridLayout->addWidget(exitButton, 10, 1, 1, 1);
 
         startGameButton = new QPushButton(StartMenu);
         startGameButton->setObjectName(QStringLiteral("startGameButton"));
@@ -71,7 +105,21 @@ public:
         startGameButton->setDefault(false);
         startGameButton->setFlat(true);
 
-        gridLayout->addWidget(startGameButton, 3, 0, 1, 1);
+        gridLayout->addWidget(startGameButton, 4, 1, 1, 1);
+
+        changePlayer = new QPushButton(StartMenu);
+        changePlayer->setObjectName(QStringLiteral("changePlayer"));
+        changePlayer->setStyleSheet(QLatin1String("QPushButton {		    \n"
+"             color: black;\n"
+"             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;\n"
+"             border-top: 20px transparent;\n"
+"             border-bottom: 20px transparent;\n"
+"             border-right: 100px transparent;\n"
+"             border-left: 100px transparent;\n"
+"			 font: 75 16pt \"System\";\n"
+"         }"));
+
+        gridLayout->addWidget(changePlayer, 8, 1, 1, 1);
 
         againstAndroid = new QPushButton(StartMenu);
         againstAndroid->setObjectName(QStringLiteral("againstAndroid"));
@@ -86,24 +134,42 @@ public:
 "         }"));
         againstAndroid->setFlat(true);
 
-        gridLayout->addWidget(againstAndroid, 4, 0, 1, 1);
+        gridLayout->addWidget(againstAndroid, 6, 1, 1, 1);
 
-        changePlayer = new QPushButton(StartMenu);
-        changePlayer->setObjectName(QStringLiteral("changePlayer"));
-        changePlayer->setStyleSheet(QLatin1String("QPushButton {		    \n"
-"             color: black;\n"
-"             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;\n"
-"             border-top: 20px transparent;\n"
-"             border-bottom: 20px transparent;\n"
-"             border-right: 100px transparent;\n"
-"             border-left: 100px transparent;\n"
-"			 font: 75 16pt \"System\";\n"
-"         }"));
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
-        gridLayout->addWidget(changePlayer, 5, 0, 1, 1);
+        gridLayout->addItem(verticalSpacer_4, 3, 1, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 4, 2, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_3, 6, 0, 1, 1);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_4, 6, 2, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_5, 8, 0, 1, 1);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_6, 8, 2, 1, 1);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_7, 10, 0, 1, 1);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_8, 10, 2, 1, 1);
 
 
-        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
+        gridLayout_2->addLayout(gridLayout, 1, 0, 1, 1);
 
 
         retranslateUi(StartMenu);
@@ -116,8 +182,8 @@ public:
         StartMenu->setWindowTitle(QApplication::translate("StartMenu", "Form", 0));
         exitButton->setText(QApplication::translate("StartMenu", "Exit", 0));
         startGameButton->setText(QApplication::translate("StartMenu", "Start Single Game", 0));
-        againstAndroid->setText(QApplication::translate("StartMenu", "Play Against Android", 0));
         changePlayer->setText(QApplication::translate("StartMenu", "Change Player", 0));
+        againstAndroid->setText(QApplication::translate("StartMenu", "Play Against Android", 0));
     } // retranslateUi
 
 };
