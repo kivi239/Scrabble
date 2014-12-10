@@ -17,6 +17,8 @@ StartMenu::StartMenu(QWidget *parent) :
       playerName = allUsers[0];
   mainUser = db->getUser(playerName);
 
+  changeLabel();
+
   connect(ui->startGameButton, SIGNAL(clicked()), SIGNAL(startSimpleGame()));
   connect(ui->startGameButton, SIGNAL(clicked()), SLOT(hide()));
   connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(forceExit()));
@@ -114,5 +116,11 @@ void StartMenu::changePlayer(QString x)
     QString newS = x;
     mainUser = db->getUser(newS);
     closeUsersForm();
+    changeLabel();
+}
+
+void StartMenu::changeLabel()
+{
+    ui->label->setText("Welcome, " + mainUser.getFullName());
 }
 
