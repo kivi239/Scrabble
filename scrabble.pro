@@ -38,7 +38,8 @@ SOURCES += main.cpp\
     dtabasetest.cpp \
     changeusersform.cpp \
     fieldbutton.cpp  \
-    createusers.cpp
+    createusers.cpp \
+    nyashBot.cpp
 
 
 HEADERS  += scrabble.h \
@@ -61,7 +62,8 @@ HEADERS  += scrabble.h \
     dtabasetest.h \
     changeusersform.h \
     fieldbutton.h \
-    createusers.h
+    createusers.h \
+    nyashBot.h
 
 
 FORMS    += scrabble.ui \
