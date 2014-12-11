@@ -2,6 +2,7 @@
 #include "mainHeader.h"
 #include <QWidget>
 #include "QListWidget"
+#include "createusers.h"
 
 namespace Ui {
 class ChangeUsersForm;
@@ -23,9 +24,12 @@ signals:
 
 private slots:
     void pressedUser(QListWidgetItem* x);
+    void createU();
+    void addUser(QString);
 
 private:
     Ui::ChangeUsersForm *ui;
     set<QString> myUsers;
+    createUsers *cUsers;
 };
 

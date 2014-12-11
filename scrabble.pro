@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     user.cpp \
     maindatabase.cpp \
     dtabasetest.cpp \
-    changeusersform.cpp
+    changeusersform.cpp \
+    createusers.cpp
 
 
 HEADERS  += scrabble.h \
@@ -57,11 +58,13 @@ HEADERS  += scrabble.h \
     mainHeader.h \
     maindatabase.h \
     dtabasetest.h \
-    changeusersform.h
+    changeusersform.h \
+    createusers.h
 
 
 FORMS    += scrabble.ui \
-    changeusersform.ui
+    changeusersform.ui \
+    createusers.ui
 FORMS    += startmenu.ui
 
 CONFIG += mobility
