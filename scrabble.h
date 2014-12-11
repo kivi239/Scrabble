@@ -6,7 +6,6 @@
 #include <vector>
 #include <QLabel>
 #include "bot.h"
-
 namespace Ui {
 class Scrabble;
 }

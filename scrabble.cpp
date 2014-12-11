@@ -1,6 +1,7 @@
 #include "scrabble.h"
 #include "ui_scrabble.h"
 #include "keyboard.h"
+#include "fieldbutton.h"
 #include <QDebug>
 #include <QFont>
 #include <QMessageBox>
@@ -65,8 +66,7 @@ void Scrabble::generate(string word)
   for (int i = 0; i < Size; i++)
     for (int j = 0; j < Size; j++)
     {
-      QPushButton *button = new QPushButton;
-      button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+      QPushButton *button = new FieldButton;
       pos[button] = make_pair(i, j);
       ui->gridLayout->addWidget(button, i, j);
       connect(button, &QPushButton::clicked, this, &Scrabble::buttonPressed);
