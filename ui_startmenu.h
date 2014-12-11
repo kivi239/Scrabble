@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +27,10 @@ class Ui_StartMenu
 {
 public:
     QGridLayout *gridLayout_2;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
+    QSpacerItem *verticalSpacer_6;
+    QSpacerItem *horizontalSpacer_9;
     QGridLayout *gridLayout;
     QSpacerItem *horizontalSpacer;
     QSpacerItem *verticalSpacer;
@@ -44,11 +49,8 @@ public:
     QSpacerItem *horizontalSpacer_6;
     QSpacerItem *horizontalSpacer_7;
     QSpacerItem *horizontalSpacer_8;
-    QSpacerItem *horizontalSpacer_9;
     QSpacerItem *horizontalSpacer_10;
-    QSpacerItem *verticalSpacer_6;
     QSpacerItem *verticalSpacer_7;
-    QLabel *label;
 
     void setupUi(QWidget *StartMenu)
     {
@@ -57,6 +59,24 @@ public:
         StartMenu->resize(419, 500);
         gridLayout_2 = new QGridLayout(StartMenu);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        label = new QLabel(StartMenu);
+        label->setObjectName(QStringLiteral("label"));
+
+        verticalLayout->addWidget(label);
+
+
+        gridLayout_2->addLayout(verticalLayout, 0, 1, 1, 1);
+
+        verticalSpacer_6 = new QSpacerItem(20, 100, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout_2->addItem(verticalSpacer_6, 1, 1, 1, 1);
+
+        horizontalSpacer_9 = new QSpacerItem(100, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_9, 2, 0, 1, 1);
+
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
@@ -177,33 +197,13 @@ public:
 
         gridLayout_2->addLayout(gridLayout, 2, 1, 1, 1);
 
-        horizontalSpacer_9 = new QSpacerItem(100, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
-
-        gridLayout_2->addItem(horizontalSpacer_9, 2, 0, 1, 1);
-
         horizontalSpacer_10 = new QSpacerItem(100, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
 
         gridLayout_2->addItem(horizontalSpacer_10, 2, 2, 1, 1);
 
-        verticalSpacer_6 = new QSpacerItem(20, 100, QSizePolicy::Minimum, QSizePolicy::Preferred);
-
-        gridLayout_2->addItem(verticalSpacer_6, 1, 1, 1, 1);
-
         verticalSpacer_7 = new QSpacerItem(20, 70, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
         gridLayout_2->addItem(verticalSpacer_7, 3, 1, 1, 1);
-
-        label = new QLabel(StartMenu);
-        label->setObjectName(QStringLiteral("label"));
-        label->setStyleSheet(QLatin1String("			 color: black;\n"
-"             border-image:url(:/new/prefix1/background2.jpg) 20 100 20 100;\n"
-"             border-top: 20px transparent;\n"
-"             border-bottom: 20px transparent;\n"
-"             border-right: 100px transparent;\n"
-"             border-left: 100px transparent;\n"
-"			 font: 75 16pt \"System\";"));
-
-        gridLayout_2->addWidget(label, 0, 1, 1, 1);
 
 
         retranslateUi(StartMenu);
@@ -214,11 +214,11 @@ public:
     void retranslateUi(QWidget *StartMenu)
     {
         StartMenu->setWindowTitle(QApplication::translate("StartMenu", "Form", 0));
+        label->setText(QApplication::translate("StartMenu", "TextLabel", 0));
         exitButton->setText(QApplication::translate("StartMenu", "Exit", 0));
         startGameButton->setText(QApplication::translate("StartMenu", "Start Single Game", 0));
         changePlayer->setText(QApplication::translate("StartMenu", "Change Player", 0));
         againstAndroid->setText(QApplication::translate("StartMenu", "Play Against Android", 0));
-        label->setText(QApplication::translate("StartMenu", "<html><head/><body><p align=\"center\"/></body></html>", 0));
     } // retranslateUi
 
 };

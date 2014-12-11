@@ -48,7 +48,7 @@ void StartMenu::againstAndroid()
       return;
   isPlayingNow = true;
   game = new Scrabble(2, true);
-  this->hide();
+  //this->hide();
   connect(game, SIGNAL(endOfGame()), this, SLOT(endOfAndroidSessison()));
   game->show();
 }
@@ -59,14 +59,14 @@ void StartMenu::singleGame()
       return;
   isPlayingNow = true;
   game = new Scrabble(2, false);
-  this->hide();
+  //this->hide();
   connect(game, SIGNAL(endOfGame()), this, SLOT(endOfSimpleSession()));
   game->show();
 }
 
 void StartMenu::endOfAndroidSessison()
 {  
-  game->hide();
+  game->close();
   delete game;
   game = nullptr;
   this->show();
@@ -75,7 +75,7 @@ void StartMenu::endOfAndroidSessison()
 
 void StartMenu::endOfSimpleSession()
 {  
-  game->hide();
+  game->close();
   delete game;
   game = nullptr;
   this->show();
@@ -87,7 +87,7 @@ void StartMenu::forceExit()
   delete game;
   delete uList;
   delete ui;
-  QApplication::exit();
+  this->close();
 }
 
 void StartMenu::showPLayers()
@@ -100,7 +100,7 @@ void StartMenu::showPLayers()
     uList->addUsers(allUsers);
     connect(uList, SIGNAL(exitForm()), this, SLOT(closeUsersForm()));
     connect(uList, SIGNAL(player(QString)), this, SLOT(changePlayer(QString)));
-    this->hide();
+    //this->hide();
     uList->show();
 }
 
