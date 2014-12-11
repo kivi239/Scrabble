@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
 
   QApplication a(argc, argv);
   //Scrabble w(2, true);
-  StartMenu gameMenu;  
+  StartMenu gameMenu;
   gameMenu.show();
-
-  return a.exec();
+  a.exit();
+  exit(a.exec());
 }
