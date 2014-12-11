@@ -71,6 +71,7 @@ void NyashBot::gen(const vector<string> &area, int vertex, pair<vector<pii>, str
            bestAnswer = cur.second.size();
        }
     }
+    used[cur.first.back().X][cur.first.back().Y] = 1;
     for (int dir = 0; dir < 4; dir++)
     {
         pii to = cur.first.back();
@@ -86,6 +87,7 @@ void NyashBot::gen(const vector<string> &area, int vertex, pair<vector<pii>, str
         gen(area, changed->nextVertex(vertex, area[to.X][to.Y]), ncur, n);
         used[to.X][to.Y] = 0;
     }
+    used[cur.first.back().X][cur.first.back().Y] = 0;
 }
 
 
