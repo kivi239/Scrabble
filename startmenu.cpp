@@ -124,5 +124,6 @@ void StartMenu::changePlayer(QString x)
 void StartMenu::changeLabel()
 {
     ui->label->setText("Welcome, " + mainUser.getFullName());
+    ui->label->setAlignment(Qt::AlignCenter);
 }
 

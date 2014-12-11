@@ -75,6 +75,16 @@ public:
         font.setBold(false);
         font.setWeight(50);
         label->setFont(font);
+        label->setStyleSheet(QLatin1String("QLabel {\n"
+"    color: white;\n"
+"	background-color: rgba(255, 90, 60, 0.4);\n"
+"	min-height: 4em;\n"
+"    text-align: center;\n"
+"    min-width: 10em;\n"
+"    border-color: rgb(250, 130, 40);\n"
+"    border-style: solid;\n"
+"}"));
+        label->setTextFormat(Qt::AutoText);
 
         verticalLayout->addWidget(label);
 
