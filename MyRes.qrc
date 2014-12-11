@@ -4,6 +4,7 @@
         <file>background.jpg</file>
         <file>backckgroundButtonGold.png</file>
         <file>background2.jpg</file>
+        <file>mainBackground.jpg</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -37,7 +37,7 @@ SOURCES += main.cpp\
     maindatabase.cpp \
     dtabasetest.cpp \
     changeusersform.cpp \
-    fieldbutton.cpp
+    fieldbutton.cpp  \
     createusers.cpp
 
 
@@ -60,7 +60,7 @@ HEADERS  += scrabble.h \
     maindatabase.h \
     dtabasetest.h \
     changeusersform.h \
-    fieldbutton.h
+    fieldbutton.h \
     createusers.h
 
 

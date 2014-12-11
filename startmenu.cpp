@@ -38,7 +38,9 @@ StartMenu::~StartMenu()
 void StartMenu::paintEvent(QPaintEvent *e)
 {
   QPainter painter(this);
-  painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/background.jpg").scaled(size()));
+//  painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/background.jpg").scaled(size()));
+  painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/mainBackground.jpg").scaled(size()));
+
   QWidget::paintEvent(e);
 }
 
