@@ -1,7 +1,8 @@
 #include "bot.h"
 
 Bot::Bot():
-easyBot(new EasyBot)
+easyBot(new EasyBot),
+nyashBot(new NyashBot)
 {    
 }
 
@@ -13,8 +14,8 @@ Bot::~Bot()
 vector<Cell> Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)
 {
     if (level <= EasyLevel)
-        return easyBot->nextTurn(field, vocabulary);
-    return easyBot->nextTurn(field, vocabulary);
+        return nyashBot->nextTurn(field, vocabulary);
+    return nyashBot->nextTurn(field, vocabulary);
 }
 
 

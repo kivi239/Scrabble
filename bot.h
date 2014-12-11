@@ -3,6 +3,7 @@
 #include "field.h"
 #include "vocabulary.h"
 #include "easybot.h"
+#include "nyashbot.h"
 
 class Bot
 {
@@ -12,5 +13,6 @@ public:
     vector<Cell> nextTurn(int level, Field *field, Vocabulary *vocabulary);
 private:
     EasyBot *easyBot;
+    NyashBot *nyashBot;
 };
 
