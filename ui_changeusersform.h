@@ -26,12 +26,12 @@ class Ui_ChangeUsersForm
 {
 public:
     QGridLayout *gridLayout;
+    QPushButton *exitButton;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *createButton;
+    QListWidget *listWidget;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *verticalSpacer;
-    QPushButton *createButton;
-    QSpacerItem *horizontalSpacer_2;
-    QPushButton *exitButton;
-    QListWidget *listWidget;
 
     void setupUi(QWidget *ChangeUsersForm)
     {
@@ -40,32 +40,32 @@ public:
         ChangeUsersForm->resize(499, 408);
         gridLayout = new QGridLayout(ChangeUsersForm);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+        exitButton = new QPushButton(ChangeUsersForm);
+        exitButton->setObjectName(QStringLiteral("exitButton"));
 
-        gridLayout->addItem(verticalSpacer_2, 0, 0, 1, 1);
+        gridLayout->addWidget(exitButton, 3, 2, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+        horizontalSpacer_2 = new QSpacerItem(30, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
 
-        gridLayout->addItem(verticalSpacer, 2, 1, 1, 1);
+        gridLayout->addItem(horizontalSpacer_2, 3, 1, 1, 1);
 
         createButton = new QPushButton(ChangeUsersForm);
         createButton->setObjectName(QStringLiteral("createButton"));
 
         gridLayout->addWidget(createButton, 3, 0, 1, 1);
 
-        horizontalSpacer_2 = new QSpacerItem(30, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_2, 3, 1, 1, 1);
-
-        exitButton = new QPushButton(ChangeUsersForm);
-        exitButton->setObjectName(QStringLiteral("exitButton"));
-
-        gridLayout->addWidget(exitButton, 3, 2, 1, 1);
-
         listWidget = new QListWidget(ChangeUsersForm);
         listWidget->setObjectName(QStringLiteral("listWidget"));
 
         gridLayout->addWidget(listWidget, 1, 0, 1, 3);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout->addItem(verticalSpacer_2, 0, 0, 1, 3);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout->addItem(verticalSpacer, 2, 0, 1, 3);
 
 
         retranslateUi(ChangeUsersForm);
@@ -76,8 +76,8 @@ public:
     void retranslateUi(QWidget *ChangeUsersForm)
     {
         ChangeUsersForm->setWindowTitle(QApplication::translate("ChangeUsersForm", "Form", 0));
-        createButton->setText(QApplication::translate("ChangeUsersForm", "New User", 0));
         exitButton->setText(QApplication::translate("ChangeUsersForm", "Exit", 0));
+        createButton->setText(QApplication::translate("ChangeUsersForm", "New User", 0));
     } // retranslateUi
 
 };

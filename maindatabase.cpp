@@ -16,7 +16,6 @@ User MainDataBase::getUser(QString name)
         bool result = query.exec(strQuery);
         QSqlRecord record = query.record();
 
-        qDebug() << "getUser " << result;
         assert(result);
 
         while (query.next())
@@ -47,7 +46,6 @@ vector<QString> MainDataBase::getAllUsers()
         bool result = query.exec(strQuery);
         QSqlRecord record = query.record();
 
-        qDebug() << result;
         assert(result);
 
         while (query.next())

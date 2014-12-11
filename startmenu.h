@@ -33,6 +33,7 @@ private slots:
     void showPLayers();
     void closeUsersForm();
     void changePlayer(QString);
+    void changeLabel();
 
 private:
   string QStringToString(QString x);

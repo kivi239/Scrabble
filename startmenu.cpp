@@ -17,6 +17,8 @@ StartMenu::StartMenu(QWidget *parent) :
       playerName = allUsers[0];
   mainUser = db->getUser(playerName);
 
+  changeLabel();
+
   connect(ui->startGameButton, SIGNAL(clicked()), SIGNAL(startSimpleGame()));
   connect(ui->startGameButton, SIGNAL(clicked()), SLOT(hide()));
   connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(forceExit()));
@@ -83,8 +85,9 @@ void StartMenu::endOfSimpleSession()
 void StartMenu::forceExit()
 {
   delete game;
+  delete uList;
   delete ui;
-    QApplication::exit();
+  QApplication::exit();
 }
 
 void StartMenu::showPLayers()
@@ -92,7 +95,9 @@ void StartMenu::showPLayers()
     //db->getUser("anton");
     //db->getUser("toha");
     vector <QString> allUsers = db->getAllUsers();
-    uList = new ChangeUsersForm(allUsers);
+    if (uList == nullptr)
+        uList = new ChangeUsersForm();
+    uList->addUsers(allUsers);
     connect(uList, SIGNAL(exitForm()), this, SLOT(closeUsersForm()));
     connect(uList, SIGNAL(player(QString)), this, SLOT(changePlayer(QString)));
     this->hide();
@@ -102,17 +107,20 @@ void StartMenu::showPLayers()
 void StartMenu::closeUsersForm()
 {
     this->show();
-    delete uList;
-    uList = nullptr;
+    uList->hide();
 }
+
 
 void StartMenu::changePlayer(QString x)
 {
-    qDebug() << "fullname " << mainUser.getFullName();
-    qDebug() << x << "\n";
-    mainUser = db->getUser(x);
-    qDebug() << "in bagdad are quite";
+    QString newS = x;
+    mainUser = db->getUser(newS);
     closeUsersForm();
-    qDebug() << "all\n";
+    changeLabel();
+}
+
+void StartMenu::changeLabel()
+{
+    ui->label->setText("Welcome, " + mainUser.getFullName());
 }
 
