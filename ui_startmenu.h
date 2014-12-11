@@ -27,10 +27,10 @@ class Ui_StartMenu
 {
 public:
     QGridLayout *gridLayout_2;
-    QSpacerItem *verticalSpacer_6;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QSpacerItem *horizontalSpacer_9;
+    QSpacerItem *verticalSpacer_7;
     QGridLayout *gridLayout;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *exitButton;
@@ -50,21 +50,17 @@ public:
     QSpacerItem *horizontalSpacer_8;
     QSpacerItem *horizontalSpacer_6;
     QSpacerItem *horizontalSpacer_10;
-    QSpacerItem *verticalSpacer_7;
     QSpacerItem *verticalSpacer_8;
     QSpacerItem *verticalSpacer_9;
+    QSpacerItem *verticalSpacer_6;
 
     void setupUi(QWidget *StartMenu)
     {
         if (StartMenu->objectName().isEmpty())
             StartMenu->setObjectName(QStringLiteral("StartMenu"));
-        StartMenu->resize(520, 500);
+        StartMenu->resize(520, 689);
         gridLayout_2 = new QGridLayout(StartMenu);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        verticalSpacer_6 = new QSpacerItem(20, 100, QSizePolicy::Minimum, QSizePolicy::Preferred);
-
-        gridLayout_2->addItem(verticalSpacer_6, 2, 1, 1, 1);
-
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(StartMenu);
@@ -94,6 +90,10 @@ public:
         horizontalSpacer_9 = new QSpacerItem(100, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
 
         gridLayout_2->addItem(horizontalSpacer_9, 3, 0, 1, 1);
+
+        verticalSpacer_7 = new QSpacerItem(20, 70, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout_2->addItem(verticalSpacer_7, 5, 1, 1, 1);
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
@@ -231,10 +231,6 @@ public:
 
         gridLayout_2->addItem(horizontalSpacer_10, 3, 2, 1, 1);
 
-        verticalSpacer_7 = new QSpacerItem(20, 70, QSizePolicy::Minimum, QSizePolicy::Preferred);
-
-        gridLayout_2->addItem(verticalSpacer_7, 5, 1, 1, 1);
-
         verticalSpacer_8 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout_2->addItem(verticalSpacer_8, 0, 1, 1, 1);
@@ -242,6 +238,10 @@ public:
         verticalSpacer_9 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout_2->addItem(verticalSpacer_9, 4, 1, 1, 1);
+
+        verticalSpacer_6 = new QSpacerItem(20, 100, QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+        gridLayout_2->addItem(verticalSpacer_6, 2, 1, 1, 1);
 
 
         retranslateUi(StartMenu);
