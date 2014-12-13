@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QFont>
 #include <QMessageBox>
+#include <QPainter>
 
 Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
   QWidget(parent),
@@ -18,7 +19,9 @@ Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
   okButton(nullptr),
   cancelButton(nullptr),
   giveUp(nullptr),
-  botFlag(botFl)
+  botFlag(botFl),
+  button1(new ProxyButton),
+  button2(new ProxyButton)
 {
   ui->setupUi(this);
   for (int i = 0; i < scrabble->getCount(); i++)
@@ -42,6 +45,16 @@ Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
   else
     bot = nullptr;
 }
+
+void Scrabble::paintEvent(QPaintEvent *e)
+{
+  QPainter painter(this);
+//  painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/background.jpg").scaled(size()));
+  painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/peachColor.png").scaled(size()));
+
+  QWidget::paintEvent(e);
+}
+
 
 Scrabble::~Scrabble()
 {
@@ -83,21 +96,33 @@ void Scrabble::generate(string word)
 
   giveUp = new QPushButton;
   giveUp->setText("Give up!");
+  giveUp->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
   ui->verticalLayout->addWidget(giveUp);
   connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
   giveUp->show();
+  giveUp->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
 
   okButton = new QPushButton;
   okButton->setText("Ok");
   connect(okButton, &QPushButton::clicked, this, &Scrabble::okPressed);
   ui->verticalLayout->addWidget(okButton);
+  okButton->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
   okButton->hide();
+  okButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   cancelButton = new QPushButton;
   cancelButton->setText("Cancel");
+  cancelButton->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
   ui->verticalLayout->addWidget(cancelButton);
   connect(cancelButton, &QPushButton::clicked, this, &Scrabble::cancelPressed);
   cancelButton->hide();
+  cancelButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+  ui->verticalLayout->addWidget(button1);
+  ui->verticalLayout->addWidget(button2);
+  button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
 void Scrabble::buttonPressed()
@@ -123,10 +148,13 @@ void Scrabble::buttonPressed()
   keyboard->makeEnable();
   keyboard->show();
   giveUp->hide();
+  button1->hide();
+  button2->hide();
   if (botFlag)
     botWord->hide();
   makeUnable();
-  button->setStyleSheet("background-color: rgb(175, 238, 238)");
+  //button->setStyleSheet("QPushButton {background-color: rgb(155, 255, 220); border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent;}");
+  button->setStyleSheet("background-color: rgb(175, 238, 238);");
 }
 
 void Scrabble::letterPressed()
@@ -150,6 +178,7 @@ void Scrabble::letterPressed()
 
   okButton->show();
   cancelButton->show();
+  button1->show();
 
   enterWord = true;
   makeEnable();
@@ -234,7 +263,8 @@ void Scrabble::cancelPressed()
       break;
     }
   assert(button != nullptr);
-  button->setStyleSheet("");
+  //button->setStyleSheet("QPushButton {background-color: rgb(255, 200, 210); border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent;}");
+  button->setStyleSheet("background-color: rgb(255, 228, 225); ");
   newCell = make_pair(-1, -1);
   scrabble->cancelFieldChange();
   copyFromField();
@@ -244,6 +274,7 @@ void Scrabble::cancelPressed()
   makeEnable();
   enterWord = false;
   giveUp->show();
+  button2->show();
 }
 
 void Scrabble::buttonMarked()
@@ -292,7 +323,8 @@ void Scrabble::okPressed()
   okButton->hide();
   cancelButton->hide();
   enterWord = false;
-  buttonFrom(newCell)->setStyleSheet("");
+  //buttonFrom(newCell)->setStyleSheet("QPushButton {background-color: rgba(255, 200, 210, 0.1); border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent;}");
+  buttonFrom(newCell)->setStyleSheet("background-color: rgb(255, 228, 225); ");
   newCell = make_pair(-1, -1);
   scrabble->updateScore((int)newWord.size());
   int gamer = scrabble->getGamer();

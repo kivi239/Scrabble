@@ -185,17 +185,17 @@ public:
         startGameButton = new QPushButton(StartMenu);
         startGameButton->setObjectName(QStringLiteral("startGameButton"));
         startGameButton->setStyleSheet(QLatin1String("QPushButton {		    \n"
-"             color: white;\n"
-"             background-color: rgb(0, 120, 150);\n"
-"             border-radius: 20px;	\n"
-"             border-top: 20px transparent;\n"
-"             border-bottom: 20px transparent;\n"
-"             border-right: 100px transparent;\n"
-"             border-left: 100px transparent;\n"
-"             min-height: 1.5em;\n"
-"             min-width: 10em;\n"
-"             font: 100 20pt \"System\";\n"
-"         }"));
+"    color: white;\n"
+"    background-color: rgb(0, 120, 150);\n"
+"    border-radius: 20px;	\n"
+"    border-top: 20px transparent;\n"
+"    border-bottom: 20px transparent;\n"
+"    border-right: 100px transparent;\n"
+"    border-left: 100px transparent;\n"
+"    min-height: 1.5em;\n"
+"    min-width: 10em;\n"
+"	font: 100 20pt \"System\";\n"
+"}"));
         startGameButton->setIconSize(QSize(100, 100));
         startGameButton->setAutoRepeat(false);
         startGameButton->setAutoDefault(false);

@@ -6,6 +6,8 @@
 #include <vector>
 #include <QLabel>
 #include "bot.h"
+#include "proxybutton.h"
+
 namespace Ui {
 class Scrabble;
 }
@@ -17,6 +19,7 @@ class Scrabble : public QWidget
 public:
   explicit Scrabble(int _countOfGamers, bool botFl = false, QWidget *parent = 0);
   ~Scrabble();
+  void paintEvent(QPaintEvent *e);
 
 signals:
   void endOfGame();
@@ -51,5 +54,7 @@ private:
   QPushButton *giveUp;
   bool botFlag;
   Bot *bot;
+  ProxyButton *button1;
+  ProxyButton *button2;
 };
 

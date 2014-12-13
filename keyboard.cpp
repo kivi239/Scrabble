@@ -33,6 +33,7 @@ void Keyboard::generate()
       QPushButton *newButton = new QPushButton(letter);
       buttons[newButton] = (char)('a' + i * 9 + j);
       newButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+      newButton->setStyleSheet("background-color: rgb(255, 228, 225); ");
       layouts[i]->addWidget(newButton);
       connect(newButton, &QPushButton::clicked, this, &Keyboard::letterPressed);
     }

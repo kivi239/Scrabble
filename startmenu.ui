@@ -282,17 +282,17 @@
       <widget class="QPushButton" name="startGameButton">
        <property name="styleSheet">
         <string notr="true">QPushButton {		    
-             color: white;
-             background-color: rgb(0, 120, 150);
-             border-radius: 20px;	
-             border-top: 20px transparent;
-             border-bottom: 20px transparent;
-             border-right: 100px transparent;
-             border-left: 100px transparent;
-             min-height: 1.5em;
-             min-width: 10em;
-             font: 100 20pt &quot;System&quot;;
-         }</string>
+    color: white;
+    background-color: rgb(0, 120, 150);
+    border-radius: 20px;	
+    border-top: 20px transparent;
+    border-bottom: 20px transparent;
+    border-right: 100px transparent;
+    border-left: 100px transparent;
+    min-height: 1.5em;
+    min-width: 10em;
+	font: 100 20pt &quot;System&quot;;
+}</string>
        </property>
        <property name="text">
         <string>Start Single Game</string>

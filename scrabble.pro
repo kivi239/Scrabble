@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     changeusersform.cpp \
     fieldbutton.cpp  \
     createusers.cpp \
-    nyashBot.cpp
+    nyashBot.cpp \
+    proxybutton.cpp
 
 
 HEADERS  += scrabble.h \
@@ -63,7 +64,8 @@ HEADERS  += scrabble.h \
     changeusersform.h \
     fieldbutton.h \
     createusers.h \
-    nyashBot.h
+    nyashBot.h \
+    proxybutton.h
 
 
 FORMS    += scrabble.ui \
