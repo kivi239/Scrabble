@@ -4,15 +4,23 @@
 #include "vocabulary.h"
 #include "easybot.h"
 #include "nyashbot.h"
+#include "triecreator.h"
 
-class Bot
+class Bot : public QObject
 {
+    Q_OBJECT
 public:
-    Bot();
+    explicit Bot(QObject *parent = 0);
     ~Bot();
     vector<Cell> nextTurn(int level, Field *field, Vocabulary *vocabulary);
+private slots:
+    void createNyashBot(Trie *t);
 private:
     EasyBot *easyBot;
     NyashBot *nyashBot;
+    TrieCreator *tGenerator;
+    bool isBuildNow;
+    bool finishCreator;
+    vector <string> tmpWords;
 };
 
