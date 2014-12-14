@@ -16,7 +16,8 @@ Bot::~Bot()
         delete nyashBot;
     if (isBuildNow)
     {
-        delete tGenerator;
+        //delete tGenerator;
+        // возможно он уже удалил это все в отложенном делите
     }
     tmpWords.clear();
 }
@@ -52,7 +53,6 @@ vector<Cell> Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)
 
 void Bot::createNyashBot(Trie *t)
 {
-    qDebug() << "done";
     finishCreator = true;
     nyashBot = new NyashBot(t);
 }

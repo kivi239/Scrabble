@@ -243,11 +243,9 @@ vector<Cell> NyashBot::nextTurn(Field *field, Vocabulary *vocabulary)
 }
 
 NyashBot::~NyashBot()
-{
-    qDebug() << "hohoh\n";
+{    
     delete changed;
     changed = nullptr;
-    qDebug() << "hihihi\n";
 }
 
 #undef pb
