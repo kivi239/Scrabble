@@ -61,9 +61,3 @@ void Bot::addWord(string const &word)
 {
     tmpWords.push_back(word);
 }
-
-void Bot::createNyashBot(Trie *t)
-{
-    finishCreator = true;
-    nyashBot = new NyashBot(t);
-}
