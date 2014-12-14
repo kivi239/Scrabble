@@ -1,6 +1,4 @@
-#ifndef PROXYBUTTON_H
-#define PROXYBUTTON_H
-
+#pragma once
 #include <QPushButton>
 
 class ProxyButton : public QPushButton
@@ -15,5 +13,3 @@ signals:
 public slots:
 
 };
-
-#endif // PROXYBUTTON_H

@@ -7,17 +7,18 @@ typedef pair<int, int> pii;
 class NyashBot : public BotInterface
 {
 public:
-    NyashBot();
+    NyashBot(Trie *nTrie);
     vector<Cell> nextTurn(Field *field, Vocabulary *vocabulary);
     ~NyashBot();
     bool ls1(const vector<pii> &a, const vector<pii> &b);
+    void addWord(string const &word);
+
 
   private:
     Trie *changed;
     int initialized;
 
-    vector < vector <Cell> > results;
-    Trie *botTrie;
+    vector < vector <Cell> > results;    
     Field *botField;
     void modify(vector<string> &area, pair<vector<pii>, string> a);
     string getWord(const vector<string> &area, const vector<pii> &figure);

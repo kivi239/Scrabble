@@ -226,7 +226,7 @@ void Scrabble::makeUnable()
 
 void Scrabble::botTurn()
 {
-  vector <Cell> result = bot->nextTurn(hard ? rand() % 10 : 2, scrabble->getField(), vocabulary);
+  vector <Cell> result = bot->nextTurn(hard ? (rand() % 50) : 2, scrabble->getField(), vocabulary);
   QString qWord = "";
   string sWord = "";
   for (int i = 0; i < (int)result.size(); ++i)

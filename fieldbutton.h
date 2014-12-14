@@ -1,6 +1,4 @@
-#ifndef FIELDBUTTON_H
-#define FIELDBUTTON_H
-
+#pragma once
 #include <QPushButton>
 
 class FieldButton : public QPushButton
@@ -12,4 +10,4 @@ public:
 
 };
 
-#endif // FIELDBUTTON_H
+
