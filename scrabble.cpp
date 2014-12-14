@@ -243,6 +243,7 @@ void Scrabble::botTurn()
   }
   scrabble->updateField();
   vocabulary->add(sWord);
+  bot->addWord(sWord);
   if (botFlag)
   {
     botWord->setText("Bot word: " + qWord);
@@ -342,7 +343,7 @@ void Scrabble::okPressed()
     msgBox.setText("There is no such word or word was used before");
     msgBox.exec();
     return;
-  }    
+  }
   scrabble->updateField();
   okButton->hide();
   cancelButton->hide();
@@ -364,6 +365,7 @@ void Scrabble::okPressed()
   }
   if (botFlag)
   {
+    bot->addWord(newWord);
     scrabble->changeGamer();
     int gamer = scrabble->getGamer();
     botTurn();
