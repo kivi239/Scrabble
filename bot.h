@@ -8,12 +8,11 @@
 class Bot
 {
 public:
-    Bot(bool hard);
+    Bot();
     ~Bot();
     vector<Cell> nextTurn(int level, Field *field, Vocabulary *vocabulary);
 private:
     EasyBot *easyBot;
     NyashBot *nyashBot;
-    bool hard;
 };
 

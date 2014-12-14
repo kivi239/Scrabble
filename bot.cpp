@@ -1,9 +1,8 @@
 #include "bot.h"
 
-Bot::Bot(bool hard):
+Bot::Bot():
   easyBot(new EasyBot),
-  nyashBot(new NyashBot),
-  hard(hard)
+  nyashBot(new NyashBot)
 {    
 }
 

@@ -42,7 +42,7 @@ Scrabble::Scrabble(int _countOfGamers, QString name, bool hard, bool botFl, QWid
   generate(word);
   if (botFl)
   {
-    bot = new Bot(hard);
+    bot = new Bot();
     botWord = new QLabel();
     ui->layoutForScores->addWidget(botWord);
     botWord->hide();
@@ -226,7 +226,7 @@ void Scrabble::makeUnable()
 
 void Scrabble::botTurn()
 {
-  vector <Cell> result = bot->nextTurn(rand() % 6, scrabble->getField(), vocabulary);
+  vector <Cell> result = bot->nextTurn(hard ? rand() % 10 : 2, scrabble->getField(), vocabulary);
   QString qWord = "";
   string sWord = "";
   for (int i = 0; i < (int)result.size(); ++i)

@@ -16,7 +16,7 @@ private slots:
 
     void init()
     {
-        bot = new Bot(false);
+        bot = new Bot();
     }
 
     void setStartWord()
