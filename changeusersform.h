@@ -15,7 +15,7 @@ class ChangeUsersForm : public QWidget
 public:
     explicit ChangeUsersForm(QWidget *parent = 0);
     ~ChangeUsersForm();
-
+    void paintEvent(QPaintEvent *);
     void addUsers(vector <QString> &users);
 
 signals:

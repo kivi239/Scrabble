@@ -1,5 +1,6 @@
 #include "changeusersform.h"
 #include "ui_changeusersform.h"
+#include <QPainter>
 
 ChangeUsersForm::ChangeUsersForm(QWidget *parent) :
     QWidget(parent),
@@ -15,6 +16,14 @@ ChangeUsersForm::ChangeUsersForm(QWidget *parent) :
 ChangeUsersForm::~ChangeUsersForm()
 {
     delete ui;
+}
+
+void ChangeUsersForm::paintEvent(QPaintEvent *e)
+{
+  QPainter painter(this);
+  painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/peachColor.png").scaled(size()));
+
+  QWidget::paintEvent(e);
 }
 
 void ChangeUsersForm::addUsers(vector<QString> &users)
