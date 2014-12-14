@@ -46,9 +46,13 @@ vector<Cell> Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)
             nyashBot->addWord(tmpWords.back());
             tmpWords.pop_back();
         }
-        qDebug() << "i am";
         return nyashBot->nextTurn(field, vocabulary);
     }
+}
+
+void Bot::addWord(string const &word)
+{
+    tmpWords.push_back(word);
 }
 
 void Bot::createNyashBot(Trie *t)
@@ -56,5 +60,3 @@ void Bot::createNyashBot(Trie *t)
     finishCreator = true;
     nyashBot = new NyashBot(t);
 }
-
-

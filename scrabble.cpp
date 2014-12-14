@@ -110,9 +110,6 @@ void Scrabble::generate(string word)
   ui->verticalLayout->addWidget(button1);
   button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   button1->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
-  ui->verticalLayout->addWidget(button2);
-  button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  button2->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
 
   giveUp = new QPushButton;
   giveUp->setText("Give up!");
@@ -138,6 +135,9 @@ void Scrabble::generate(string word)
   cancelButton->hide();
   cancelButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+  ui->verticalLayout->addWidget(button2);
+  button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  button2->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
 }
 
 void Scrabble::buttonPressed()
@@ -193,7 +193,7 @@ void Scrabble::letterPressed()
 
   okButton->show();
   cancelButton->show();
-  button2->show();
+  button1->show();
 
   enterWord = true;
   makeEnable();
@@ -243,6 +243,7 @@ void Scrabble::botTurn()
   }
   scrabble->updateField();
   vocabulary->add(sWord);
+  bot->addWord(sWord);
   if (botFlag)
   {
     botWord->setText("Bot word: " + qWord);
@@ -298,7 +299,6 @@ void Scrabble::cancelPressed()
   enterWord = false;
   giveUp->show();
   button2->show();
-  button1->show();
 }
 
 void Scrabble::buttonMarked()
@@ -342,11 +342,10 @@ void Scrabble::okPressed()
     msgBox.setText("There is no such word or word was used before");
     msgBox.exec();
     return;
-  }    
+  }
   scrabble->updateField();
   okButton->hide();
   cancelButton->hide();
-  button1->hide();
   enterWord = false;
   buttonFrom(newCell)->setStyleSheet("background-color: rgb(255, 228, 225); ");
   newCell = make_pair(-1, -1);
@@ -364,6 +363,7 @@ void Scrabble::okPressed()
   }
   if (botFlag)
   {
+    bot->addWord(newWord);
     scrabble->changeGamer();
     int gamer = scrabble->getGamer();
     botTurn();
@@ -385,6 +385,4 @@ void Scrabble::okPressed()
   }
   scrabble->changeGamer();
   giveUp->show();
-  button1->show();
-  button2->show();
 }

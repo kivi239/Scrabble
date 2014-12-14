@@ -13,6 +13,7 @@ public:
     explicit Bot(QObject *parent = 0);
     ~Bot();
     vector<Cell> nextTurn(int level, Field *field, Vocabulary *vocabulary);
+    void addWord(const string &word);
 private slots:
     void createNyashBot(Trie *t);
 private:
