@@ -30,7 +30,6 @@ SOURCES += main.cpp\
     botinterface.cpp \
     cell.cpp \
     easybot.cpp \
-    bot.cpp \
     bottest.cpp \
     startmenu.cpp \
     user.cpp \
@@ -40,7 +39,9 @@ SOURCES += main.cpp\
     fieldbutton.cpp  \
     createusers.cpp \
     nyashBot.cpp \
-    proxybutton.cpp
+    proxybutton.cpp \
+    triecreator.cpp \
+    bot.cpp
 
 
 HEADERS  += scrabble.h \
@@ -54,7 +55,6 @@ HEADERS  += scrabble.h \
     botinterface.h \
     cell.h \
     easybot.h \
-    bot.h \
     bottest.h \
     startmenu.h \
     user.h \
@@ -65,7 +65,9 @@ HEADERS  += scrabble.h \
     fieldbutton.h \
     createusers.h \
     nyashBot.h \
-    proxybutton.h
+    proxybutton.h \
+    triecreator.h \
+    bot.h
 
 
 FORMS    += scrabble.ui \

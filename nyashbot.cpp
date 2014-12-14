@@ -1,6 +1,6 @@
 #include "nyashbot.h"
 
-NyashBot::NyashBot()
+NyashBot::NyashBot(Trie *nTrie)
 {
     go[0][0] = 0;
     go[0][1] = 1;
@@ -10,6 +10,7 @@ NyashBot::NyashBot()
     go[2][1] = -1;
     go[3][0] = -1;
     go[3][1] = 0;
+    changed = nTrie;
 }
 #define pb push_back
 #define mp make_pair
@@ -32,29 +33,17 @@ string NyashBot::getWord(const vector<string> & area, const vector<pii> &figure)
 
 bool NyashBot::ls1(const vector<pii> &a, const vector<pii> &b)
 {
-   return a.size() > b.size();
+    return a.size() > b.size();
 }
 
-
-void NyashBot::dfs(Trie *in, string cur, int v, Trie *out)
+void NyashBot::addWord(const string &word)
 {
-   if (in->getValue(v) == 1)
-   {
-     // cerr << "added" << endl;
-      for (int i = 0; i < (int)cur.size(); i++)
-      {
-          string ncur = cur;
-          ncur[i] = 'X';
-          out->add(ncur);
-      }
-   }
-   for (char a = 'a'; a <= 'z'; a++)
-   {
-       if (in->nextVertex(v, a) == -1) continue;
-       string nc = cur;
-       nc.pb(a);
-       dfs(in, nc, in->nextVertex(v, a), out);
-   }
+    for (int i = 0; i < word.size(); ++i)
+    {
+        string tmp = word;
+        tmp[i] = 'X';
+        changed->setWord(tmp);
+    }
 }
 
 
@@ -93,14 +82,6 @@ void NyashBot::gen(const vector<string> &area, int vertex, pair<vector<pii>, str
 
 pair<vector<pii>, string> NyashBot::getTheBestWord(vector<string> area, pii point, Trie *vocab)
 {
-   if (initialized == -1)
-   {
-      initialized = 1;
-
-      dfs(vocab, "", 0, changed);
-
-   }
-
    int n = area.size();
    for (int i = 0; i < n; i++)
       assert((int)area[i].size() == n);
@@ -124,7 +105,7 @@ pair<vector<pii>, string> NyashBot::getTheBestWord(vector<string> area, pii poin
      }
    if (bestAnswer == 0)
    {
-      pair<vector<pii>, string> cur;
+      pair<vector<pii>, string> cur;      
       return cur;
    }
    for (int i = 0; i < (int)ans.Y.size(); i++)
@@ -232,9 +213,9 @@ pair<vector<pii>, string> NyashBot::deepOptimise(vector<string> area, Trie *voca
    return poss[bestid];
 }
 
-pair<vector<pii>, string> NyashBot::deepOptimise(vector<string> area, Trie *vocab)   //area should NOT be a pointer
+pair<vector<pii>, string> NyashBot::deepOptimise(vector<string> area, Trie *vocab)
 {
-    int some;
+    int some = 0;
     return deepOptimise(area, vocab, some, 2);
 }
 
@@ -243,12 +224,9 @@ pair<vector<pii>, string> NyashBot::deepOptimise(vector<string> area, Trie *voca
 
 vector<Cell> NyashBot::nextTurn(Field *field, Vocabulary *vocabulary)
 {
-    botField = field;
-    botTrie = vocabulary->getTrie();
+    botField = field;    
     results.clear();
     results.push_back(vector<Cell>());
-    initialized = -1;
-    changed = new Trie();
     vector<string> area(Size);
     for (int i = 0; i < Size; i++)
     {
@@ -260,14 +238,14 @@ vector<Cell> NyashBot::nextTurn(Field *field, Vocabulary *vocabulary)
     }
     pair<vector<pii>, string> result = deepOptimise(area, vocabulary->getTrie());
     for (int i = 0; i < (int)result.first.size(); i++)
-        results[0].pb(Cell(result.first[i].first, result.first[i].second, result.second[i]));
-    delete changed;
+        results[0].pb(Cell(result.first[i].first, result.first[i].second, result.second[i]));    
     return results[0];
 }
 
 NyashBot::~NyashBot()
-{
-
+{    
+    delete changed;
+    changed = nullptr;
 }
 
 #undef pb

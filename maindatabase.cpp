@@ -32,7 +32,7 @@ User MainDataBase::getUser(QString name)
         }
         addUser(name);
         return getUser(name);
-    }
+    }    
 }
 
 vector<QString> MainDataBase::getAllUsers()
