@@ -78,6 +78,13 @@ Scrabble::~Scrabble()
   delete ui;
 }
 
+char bigChar(char c)
+{
+  if (c > 'z' || c < 'a')
+    return c;
+  return c - 'a' + 'A';
+}
+
 void Scrabble::generate(string word)
 {
   for (int i = 0; i < Size; i++)
@@ -91,7 +98,7 @@ void Scrabble::generate(string word)
       if (i == Size / 2)
       {
         QString str = "";
-        str += word[j];
+        str += bigChar(word[j]);
         scrabble->setCell(i, j, word[j]);
         button->setText(str);
       }
@@ -99,11 +106,11 @@ void Scrabble::generate(string word)
   scrabble->updateField();
   ui->verticalLayout->addWidget(button1);
   button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  button1->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
+  button1->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
 
   giveUp = new QPushButton;
   giveUp->setText("Give up!");
-  giveUp->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
+  giveUp->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
   ui->verticalLayout->addWidget(giveUp);
   connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
   giveUp->show();
@@ -113,13 +120,13 @@ void Scrabble::generate(string word)
   okButton->setText("Ok");
   connect(okButton, &QPushButton::clicked, this, &Scrabble::okPressed);
   ui->verticalLayout->addWidget(okButton);
-  okButton->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
+  okButton->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
   okButton->hide();
   okButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   cancelButton = new QPushButton;
   cancelButton->setText("Cancel");
-  cancelButton->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
+  cancelButton->setStyleSheet("QPushButton {color: white; background-color: rgb(0, 120, 150); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
   ui->verticalLayout->addWidget(cancelButton);
   connect(cancelButton, &QPushButton::clicked, this, &Scrabble::cancelPressed);
   cancelButton->hide();
@@ -127,7 +134,7 @@ void Scrabble::generate(string word)
 
   ui->verticalLayout->addWidget(button2);
   button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  button2->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
+  button2->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1.5em; min-width: 8em; font: 100 20pt \"System\";}");
 }
 
 void Scrabble::buttonPressed()
@@ -177,7 +184,7 @@ void Scrabble::letterPressed()
     }
   assert(button != nullptr);
   QString str = "";
-  str += letter;
+  str += bigChar(letter);
   button->setText(str);
   keyboard->hide();
 
@@ -197,7 +204,7 @@ void Scrabble::copyFromField()
     QString str = "";
     char letter = scrabble->getCell(position.first, position.second);
     if (letter != '!' && letter != '\0')
-      str += letter;
+      str += bigChar(letter);
     it->first->setText(str);
   }
 }
@@ -229,7 +236,7 @@ void Scrabble::botTurn()
   {
     scrabble->setCell(result[i].getX(), result[i].getY(), result[i].getCh());
     QPushButton *button = buttonFrom(make_pair(result[i].getX(), result[i].getY()));
-    button->setText(QString(result[i].getCh()));
+    button->setText(QString(bigChar(result[i].getCh())));
   }
   scrabble->updateField();
   vocabulary->add(sWord);
