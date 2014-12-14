@@ -7,7 +7,7 @@
 #include <QMessageBox>
 #include <QPainter>
 
-Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
+Scrabble::Scrabble(int _countOfGamers, QString name, bool botFl, QWidget *parent) :
   QWidget(parent),
   ui(new Ui::Scrabble),
   scrabble(new ScrabbleFunc(_countOfGamers)),
@@ -21,13 +21,17 @@ Scrabble::Scrabble(int _countOfGamers, bool botFl, QWidget *parent) :
   giveUp(nullptr),
   botFlag(botFl),
   button1(new ProxyButton),
-  button2(new ProxyButton)
+  button2(new ProxyButton),
+  name(name)
 {
   ui->setupUi(this);
   for (int i = 0; i < scrabble->getCount(); i++)
   {
     QLabel *label = new QLabel;
-    label->setText("Gamer " + QString::number(i + 1) + ": 0");
+    QString gamerName = name;
+    if (i > 0 && botFlag)
+      gamerName = "Android";
+    label->setText(gamerName + ": 0");
     ui->layoutForScores->addWidget(label, i);
     scoreLabels.push_back(label);
   }
@@ -93,6 +97,9 @@ void Scrabble::generate(string word)
       }
     }
   scrabble->updateField();
+  ui->verticalLayout->addWidget(button1);
+  button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  button1->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
 
   giveUp = new QPushButton;
   giveUp->setText("Give up!");
@@ -101,7 +108,6 @@ void Scrabble::generate(string word)
   connect(giveUp, &QPushButton::clicked, this, &Scrabble::endGame);
   giveUp->show();
   giveUp->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
 
   okButton = new QPushButton;
   okButton->setText("Ok");
@@ -119,10 +125,9 @@ void Scrabble::generate(string word)
   cancelButton->hide();
   cancelButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-  ui->verticalLayout->addWidget(button1);
   ui->verticalLayout->addWidget(button2);
-  button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  button2->setStyleSheet("QPushButton {border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 8em; font: 100 20pt \"System\";}");
 }
 
 void Scrabble::buttonPressed()
@@ -239,7 +244,15 @@ void Scrabble::endGame()
 {
   QString msg = "Game is over! Scores:\n";
   for (int i = 0; i < scrabble->getCount(); i++)
-    msg += "Gamer " + QString::number(i + 1) + " : " + QString::number(scrabble->getScore(i)) + "\n";
+  {
+    if (i == 0)
+      msg += name;
+    if (i > 0 && botFlag)
+      msg += "Android";
+    if (i > 0 && !botFlag)
+      msg += name;
+    msg += ": " + QString::number(scrabble->getScore(i)) + "\n";
+  }
   int ok = QMessageBox::information(this, "Game over", msg);
   if (ok == QMessageBox::Ok)
     emit endOfGame();
@@ -323,13 +336,15 @@ void Scrabble::okPressed()
   okButton->hide();
   cancelButton->hide();
   enterWord = false;
-  //buttonFrom(newCell)->setStyleSheet("QPushButton {background-color: rgba(255, 200, 210, 0.1); border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent;}");
   buttonFrom(newCell)->setStyleSheet("background-color: rgb(255, 228, 225); ");
   newCell = make_pair(-1, -1);
   scrabble->updateScore((int)newWord.size());
   int gamer = scrabble->getGamer();
   QLabel *label = scoreLabels[gamer];
-  label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));  
+  QString gamerName = name;
+  if (gamer > 0 && botFlag)
+    gamerName = "Android";
+  label->setText(gamerName + ": " + QString::number(scrabble->getScore(gamer)));
   if (scrabble->endOfGame())
   {
     endGame();
@@ -346,7 +361,10 @@ void Scrabble::okPressed()
       return;
     }
     QLabel *label = scoreLabels[gamer];
-    label->setText("Gamer " + QString::number(gamer + 1) + " : " + QString::number(scrabble->getScore(gamer)));
+    QString gamerName = name;
+    if (gamer > 0 && botFlag)
+      gamerName = "Android";
+    label->setText(gamerName + ": " + QString::number(scrabble->getScore(gamer)));
     if (scrabble->endOfGame())
     {
       endGame();

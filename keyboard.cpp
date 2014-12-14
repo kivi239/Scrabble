@@ -31,9 +31,12 @@ void Keyboard::generate()
       QString letter= "";
       letter += (char)('a' + i * 9 + j);
       QPushButton *newButton = new QPushButton(letter);
+
       buttons[newButton] = (char)('a' + i * 9 + j);
       newButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-      newButton->setStyleSheet("background-color: rgb(255, 228, 225); ");
+      //newButton->setStyleSheet("background-color: rgb(255, 228, 225); ");
+      newButton->setStyleSheet("QPushButton {color:black;background-color: rgb(255, 228, 225); border-radius: 20px; border-top: 20px transparent; border-bottom: 20px transparent; border-right: 100px transparent; border-left: 100px transparent; min-height: 1em; min-width: 1em; font: 100 16pt \"System\";}");
+
       layouts[i]->addWidget(newButton);
       connect(newButton, &QPushButton::clicked, this, &Keyboard::letterPressed);
     }

@@ -49,7 +49,7 @@ void StartMenu::againstAndroid()
   if (isPlayingNow)
       return;
   isPlayingNow = true;
-  game = new Scrabble(2, true);
+  game = new Scrabble(2, mainUser.getFullName(), true);
   //this->hide();
   connect(game, SIGNAL(endOfGame()), this, SLOT(endOfAndroidSessison()));
   game->show();
@@ -60,7 +60,7 @@ void StartMenu::singleGame()
   if (isPlayingNow)
       return;
   isPlayingNow = true;
-  game = new Scrabble(2, false);
+  game = new Scrabble(2, mainUser.getFullName(), false);
   //this->hide();
   connect(game, SIGNAL(endOfGame()), this, SLOT(endOfSimpleSession()));
   game->show();
