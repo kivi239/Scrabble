@@ -46,7 +46,6 @@ vector<Cell> Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)
             nyashBot->addWord(tmpWords.back());
             tmpWords.pop_back();
         }
-        qDebug() << "i am";
         return nyashBot->nextTurn(field, vocabulary);
     }
 }
