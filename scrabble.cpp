@@ -76,6 +76,8 @@ Scrabble::~Scrabble()
   delete giveUp;
   delete scrabble;
   delete ui;
+  delete button1;
+  delete button2;
 }
 
 char bigChar(char c)
