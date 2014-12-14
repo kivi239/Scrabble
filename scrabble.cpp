@@ -7,7 +7,7 @@
 #include <QMessageBox>
 #include <QPainter>
 
-Scrabble::Scrabble(int _countOfGamers, QString name, bool botFl, QWidget *parent) :
+Scrabble::Scrabble(int _countOfGamers, QString name, bool hard, bool botFl, QWidget *parent) :
   QWidget(parent),
   ui(new Ui::Scrabble),
   scrabble(new ScrabbleFunc(_countOfGamers)),
@@ -22,7 +22,8 @@ Scrabble::Scrabble(int _countOfGamers, QString name, bool botFl, QWidget *parent
   botFlag(botFl),
   button1(new ProxyButton),
   button2(new ProxyButton),
-  name(name)
+  name(name),
+  hard(hard)
 {
   ui->setupUi(this);
   for (int i = 0; i < scrabble->getCount(); i++)
@@ -41,7 +42,7 @@ Scrabble::Scrabble(int _countOfGamers, QString name, bool botFl, QWidget *parent
   generate(word);
   if (botFl)
   {
-    bot = new Bot();
+    bot = new Bot(hard);
     botWord = new QLabel();
     ui->layoutForScores->addWidget(botWord);
     botWord->hide();

@@ -21,11 +21,13 @@ void paintEvent(QPaintEvent *);
 
 
 signals:
-  void startSimpleGame();
-  void startAgainstAndroid();
+    void startSimpleGame();
+    void startAgainstHardAndroid();
+    void startAgainstEasyAndroid();
 
 private slots:
-    void againstAndroid();
+    void againstHardAndroid();
+    void againstEasyAndroid();
     void singleGame();
     void endOfAndroidSessison();
     void endOfSimpleSession();

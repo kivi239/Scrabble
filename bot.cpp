@@ -1,14 +1,16 @@
 #include "bot.h"
 
-Bot::Bot():
-easyBot(new EasyBot),
-nyashBot(new NyashBot)
+Bot::Bot(bool hard):
+  easyBot(new EasyBot),
+  nyashBot(new NyashBot),
+  hard(hard)
 {    
 }
 
 Bot::~Bot()
 {
     delete easyBot;
+    delete nyashBot;
 }
 
 vector<Cell> Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)

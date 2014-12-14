@@ -17,7 +17,7 @@ class Scrabble : public QWidget
   Q_OBJECT
 
 public:
-  explicit Scrabble(int _countOfGamers, QString name, bool botFl = false, QWidget *parent = 0);
+  explicit Scrabble(int _countOfGamers, QString name, bool hard, bool botFl = false, QWidget *parent = 0);
   ~Scrabble();
   void paintEvent(QPaintEvent *e);
 
@@ -57,5 +57,6 @@ private:
   ProxyButton *button1;
   ProxyButton *button2;
   QString name;
+  bool hard;
 };
 

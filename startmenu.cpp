@@ -22,9 +22,12 @@ StartMenu::StartMenu(QWidget *parent) :
   connect(ui->startGameButton, SIGNAL(clicked()), SIGNAL(startSimpleGame()));
   connect(ui->startGameButton, SIGNAL(clicked()), SLOT(hide()));
   connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(forceExit()));
-  connect(ui->againstAndroid, SIGNAL(clicked()), SIGNAL(startAgainstAndroid()));
-  connect(ui->againstAndroid, SIGNAL(clicked()), SLOT(hide()));
-  connect(this, SIGNAL(startAgainstAndroid()), this, SLOT(againstAndroid()));
+  connect(ui->againstHardAndroid, SIGNAL(clicked()), SIGNAL(startAgainstHardAndroid()));
+  connect(ui->againstHardAndroid, SIGNAL(clicked()), SLOT(hide()));
+  connect(ui->againstEasyAndroid, SIGNAL(clicked()), SIGNAL(startAgainstEasyAndroid()));
+  connect(ui->againstEasyAndroid, SIGNAL(clicked()), SLOT(hide()));
+  connect(this, SIGNAL(startAgainstHardAndroid()), this, SLOT(againstHardAndroid()));
+  connect(this, SIGNAL(startAgainstEasyAndroid()), this, SLOT(againstEasyAndroid()));
   connect(this, SIGNAL(startSimpleGame()), this, SLOT(singleGame()));
   connect(ui->changePlayer, SIGNAL(clicked()), this, SLOT(showPLayers()));
 }
@@ -44,13 +47,23 @@ void StartMenu::paintEvent(QPaintEvent *e)
   QWidget::paintEvent(e);
 }
 
-void StartMenu::againstAndroid()
+void StartMenu::againstHardAndroid()
 {
   if (isPlayingNow)
       return;
   isPlayingNow = true;
-  game = new Scrabble(2, mainUser.getFullName(), true);
+  game = new Scrabble(2, mainUser.getFullName(), true, true);
   //this->hide();
+  connect(game, SIGNAL(endOfGame()), this, SLOT(endOfAndroidSessison()));
+  game->show();
+}
+
+void StartMenu::againstEasyAndroid()
+{
+  if (isPlayingNow)
+      return;
+  isPlayingNow = true;
+  game = new Scrabble(2, mainUser.getFullName(), false, true);
   connect(game, SIGNAL(endOfGame()), this, SLOT(endOfAndroidSessison()));
   game->show();
 }

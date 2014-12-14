@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
+    <width>532</width>
     <height>689</height>
    </rect>
   </property>
@@ -82,6 +82,27 @@
    </item>
    <item row="3" column="1">
     <layout class="QGridLayout" name="gridLayout">
+     <item row="8" column="1">
+      <widget class="QPushButton" name="againstEasyAndroid">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {		    
+             color: white;
+             background-color: rgb(0, 120, 150);
+             border-radius: 20px;	
+             border-top: 20px transparent;
+             border-bottom: 20px transparent;
+             border-right: 100px transparent;
+             border-left: 100px transparent;
+             min-height: 1.5em;
+             min-width: 12em;
+             font: 100 20pt &quot;System&quot;;
+         }</string>
+       </property>
+       <property name="text">
+        <string>Play Against Android (easy)</string>
+       </property>
+      </widget>
+     </item>
      <item row="6" column="0">
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
@@ -98,7 +119,23 @@
        </property>
       </spacer>
      </item>
-     <item row="10" column="1">
+     <item row="11" column="1">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="12" column="1">
       <widget class="QPushButton" name="exitButton">
        <property name="styleSheet">
         <string notr="true">QPushButton {		    
@@ -122,7 +159,7 @@
        </property>
       </widget>
      </item>
-     <item row="11" column="1">
+     <item row="13" column="1">
       <spacer name="verticalSpacer_5">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -138,24 +175,24 @@
        </property>
       </spacer>
      </item>
-     <item row="5" column="1">
-      <spacer name="verticalSpacer_3">
+     <item row="4" column="2">
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
-        <enum>Qt::Vertical</enum>
+        <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
         <enum>QSizePolicy::Preferred</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>20</width>
-         <height>40</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
-     <item row="9" column="1">
-      <spacer name="verticalSpacer">
+     <item row="5" column="1">
+      <spacer name="verticalSpacer_3">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
@@ -202,23 +239,7 @@
        </property>
       </spacer>
      </item>
-     <item row="4" column="2">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Preferred</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="8" column="1">
+     <item row="10" column="1">
       <widget class="QPushButton" name="changePlayer">
        <property name="styleSheet">
         <string notr="true">QPushButton {		    
@@ -236,30 +257,6 @@
        </property>
        <property name="text">
         <string>Change Player</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QPushButton" name="againstAndroid">
-       <property name="styleSheet">
-        <string notr="true">QPushButton {		    
-             color: white;
-             background-color: rgb(0, 120, 150);
-             border-radius: 20px;	
-             border-top: 20px transparent;
-             border-bottom: 20px transparent;
-             border-right: 100px transparent;
-             border-left: 100px transparent;
-             min-height: 1.5em;
-             min-width: 10em;
-             font: 100 20pt &quot;System&quot;;
-         }</string>
-       </property>
-       <property name="text">
-        <string>Play Against Android</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -296,7 +293,7 @@
 }</string>
        </property>
        <property name="text">
-        <string>Start Single Game</string>
+        <string>Play with yourself</string>
        </property>
        <property name="iconSize">
         <size>
@@ -318,8 +315,80 @@
        </property>
       </widget>
      </item>
-     <item row="10" column="0">
+     <item row="6" column="1">
+      <widget class="QPushButton" name="againstHardAndroid">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {		    
+             color: white;
+             background-color: rgb(0, 120, 150);
+             border-radius: 20px;	
+             border-top: 20px transparent;
+             border-bottom: 20px transparent;
+             border-right: 100px transparent;
+             border-left: 100px transparent;
+             min-height: 1.5em;
+             min-width: 12em;
+             font: 100 20pt &quot;System&quot;;
+         }</string>
+       </property>
+       <property name="text">
+        <string>Play Against Android (hard)</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="12" column="0">
       <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="12" column="2">
+      <spacer name="horizontalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="10" column="0">
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="10" column="2">
+      <spacer name="horizontalSpacer_6">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -350,50 +419,15 @@
        </property>
       </spacer>
      </item>
-     <item row="8" column="0">
-      <spacer name="horizontalSpacer_5">
+     <item row="9" column="1">
+      <spacer name="verticalSpacer_10">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Preferred</enum>
+        <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="10" column="2">
-      <spacer name="horizontalSpacer_8">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Preferred</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="8" column="2">
-      <spacer name="horizontalSpacer_6">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Preferred</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
+         <width>20</width>
+         <height>40</height>
         </size>
        </property>
       </spacer>
