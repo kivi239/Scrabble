@@ -13,6 +13,7 @@ class createUsers : public QWidget
 public:
     explicit createUsers(QWidget *parent = 0);
     ~createUsers();
+    void paintEvent(QPaintEvent *);
 
 signals:
     void newUser(QString);

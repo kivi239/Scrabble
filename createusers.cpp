@@ -1,5 +1,6 @@
 #include "createusers.h"
 #include "ui_createusers.h"
+#include <QPainter>
 
 createUsers::createUsers(QWidget *parent) :
     QWidget(parent),
@@ -13,6 +14,14 @@ createUsers::createUsers(QWidget *parent) :
 createUsers::~createUsers()
 {
     delete ui;
+}
+
+void createUsers::paintEvent(QPaintEvent *e)
+{
+  QPainter painter(this);
+  painter.drawPixmap(0, 0, QPixmap(":/new/prefix1/peachColor.png").scaled(size()));
+
+  QWidget::paintEvent(e);
 }
 
 void createUsers::sendUser()

@@ -6,6 +6,7 @@
         <file>background2.jpg</file>
         <file>mainBackground.jpg</file>
         <file>peachColor.png</file>
+        <file>peachButton.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
