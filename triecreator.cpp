@@ -2,23 +2,28 @@
 
 TrieCreator::TrieCreator(Trie *trie)
 {
-    myTrie = trie;
+    Worker *worker = new Worker;
+    worker->moveToThread(&workerThread);
+    connect(&workerThread, SIGNAL(finished()), worker, SLOT(deleteLater()));
+    connect(this, SIGNAL(startCreating(Trie*)), worker, SLOT(doWork(Trie*)));
+    connect(worker, SIGNAL(resultIsReady(Trie*)), this, SLOT(handleResult(Trie*)));
+    workerThread.start();
+    emit startCreating(trie);
 }
 
-
-void TrieCreator::run()
+void Worker::doWork(Trie *tr)
 {
     tmp = 0;
     Trie *result = new Trie();
-    dfs(myTrie, "", 0, result);
-    emit resultReady(result);
+    dfs(tr, "", 0, result);
+    emit resultIsReady(result);
 }
 
-void TrieCreator::dfs(Trie *in, string cur, int v, Trie *out)
+void Worker::dfs(Trie *in, string cur, int v, Trie *out)
 {
     if (in->getValue(v) == 1)
     {
-       for (int i = 0; i < (int)cur.size(); i++)
+        for (int i = 0; i < (int)cur.size(); i++)
        {
            string ncur = cur;
            ncur[i] = 'X';

@@ -4,16 +4,8 @@ EasyBot::EasyBot()
 {
     for (int i = 0; i < sizeOfAlphabet; i++)
         stepsInSearch[i] = (char)('a' + i);
-    directionX = new int[directionNumber];//{0, 0, -1, 1};
-    directionX[0] = 0;
-    directionX[1] = 0;
-    directionX[2] = -1;
-    directionX[3] = 1;
-    directionY = new int[directionNumber];//{-1, 1, 0, 0};
-    directionY[0] = -1;
-    directionY[1] = 1;
-    directionY[2] = 0;
-    directionY[3] = 0;
+    directionX = new int[directionNumber]{0, 0, -1, 1};
+    directionY = new int[directionNumber]{-1, 1, 0, 0};
 }
 
 vector <Cell> EasyBot::nextTurn(Field *field, Vocabulary *vocabulary)

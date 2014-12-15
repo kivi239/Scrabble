@@ -244,7 +244,8 @@ vector<Cell> NyashBot::nextTurn(Field *field, Vocabulary *vocabulary)
 
 NyashBot::~NyashBot()
 {    
-    delete changed;
+    if (changed)
+        delete changed;
     changed = nullptr;
 }
 

@@ -16,8 +16,7 @@ Bot::~Bot()
         delete nyashBot;
     if (isBuildNow)
     {
-        //delete tGenerator;
-        // возможно он уже удалил это все в отложенном делите
+        delete tGenerator;
     }
     tmpWords.clear();
 }
@@ -32,10 +31,8 @@ vector<Cell> Bot::nextTurn(int level, Field *field, Vocabulary *vocabulary)
     {
         isBuildNow = true;
         tGenerator = new TrieCreator(vocabulary->getTrie());
-
         connect(tGenerator, SIGNAL(resultReady(Trie*)), this, SLOT(createNyashBot(Trie*)));
-        connect(tGenerator, SIGNAL(finished()), tGenerator, SLOT(deleteLater()));
-        tGenerator->start();
+
     }
     if (level <= EasyLevel || (!finishCreator))
         return easyBot->nextTurn(field, vocabulary);
